@@ -15,6 +15,9 @@ class InsuranceModule implements AppModule {
   String get title => 'Insurance';
 
   @override
+  String get initialRoute => '/insurance';
+
+  @override
   List<RouteBase> get routes => [
         GoRoute(
           path: '/insurance',

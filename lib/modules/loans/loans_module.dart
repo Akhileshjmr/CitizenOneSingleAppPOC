@@ -15,6 +15,9 @@ class LoansModule implements AppModule {
   String get title => 'Loans';
 
   @override
+  String get initialRoute => '/loans';
+
+  @override
   List<RouteBase> get routes => [
         GoRoute(
           path: '/loans',

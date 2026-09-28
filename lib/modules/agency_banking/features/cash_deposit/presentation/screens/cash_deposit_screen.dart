@@ -115,11 +115,13 @@ class _CashDepositScreenState extends State<CashDepositScreen> {
                               decimal: true),
                           prefixIcon: const Icon(Icons.attach_money),
                           validator: (val) {
-                            if (val == null || val.trim().isEmpty)
+                            if (val == null || val.trim().isEmpty) {
                               return 'Enter deposit amount';
+                            }
                             final parsed = double.tryParse(val);
-                            if (parsed == null || parsed <= 0)
+                            if (parsed == null || parsed <= 0) {
                               return 'Enter a valid positive amount';
+                            }
                             return null;
                           },
                         ),

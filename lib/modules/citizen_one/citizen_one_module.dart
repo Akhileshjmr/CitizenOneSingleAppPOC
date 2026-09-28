@@ -18,6 +18,9 @@ class CitizenOneModule implements AppModule {
   String get title => 'Citizen One';
 
   @override
+  String get initialRoute => '/citizen-one';
+
+  @override
   List<RouteBase> get routes => [
         GoRoute(
           path: '/login',
@@ -33,6 +36,20 @@ class CitizenOneModule implements AppModule {
         ),
         GoRoute(
           path: '/citizen-one',
+          builder: (context, state) {
+            final apiClient = ApiClient();
+            final api = CitizenApi(apiClient);
+            final repository = CitizenRepositoryImpl(api);
+            final useCase = GetCitizenServicesUseCase(repository);
+
+            return BlocProvider(
+              create: (_) => CitizenCubit(useCase),
+              child: const CitizenServicesScreen(),
+            );
+          },
+        ),
+        GoRoute(
+          path: '/citizen_one',
           builder: (context, state) {
             final apiClient = ApiClient();
             final api = CitizenApi(apiClient);

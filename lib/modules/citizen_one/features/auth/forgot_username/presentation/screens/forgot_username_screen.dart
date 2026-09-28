@@ -51,9 +51,9 @@ class _ForgotUsernameScreenState extends State<ForgotUsernameScreen> {
                       const Icon(Icons.badge,
                           size: 64, color: CitizenOneColors.primary),
                       const SizedBox(height: AppSpacing.md),
-                      Text('Username Recovered', style: AppTypography.title),
+                      const Text('Username Recovered', style: AppTypography.title),
                       const SizedBox(height: AppSpacing.sm),
-                      Text(
+                      const Text(
                         'Your associated username account is:',
                         style: AppTypography.caption,
                       ),
@@ -94,7 +94,7 @@ class _ForgotUsernameScreenState extends State<ForgotUsernameScreen> {
                           style: AppTypography.title
                               .copyWith(color: CitizenOneColors.primary)),
                       const SizedBox(height: AppSpacing.sm),
-                      Text(
+                      const Text(
                         'Enter your registered email address to retrieve your account username.',
                         style: AppTypography.caption,
                       ),

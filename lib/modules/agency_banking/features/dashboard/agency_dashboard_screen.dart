@@ -51,7 +51,7 @@ class AgencyDashboardScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: AppSpacing.lg),
-            Text('Agency Features', style: AppTypography.title),
+            const Text('Agency Features', style: AppTypography.title),
             const SizedBox(height: AppSpacing.md),
             GridView.count(
               crossAxisCount: 2,

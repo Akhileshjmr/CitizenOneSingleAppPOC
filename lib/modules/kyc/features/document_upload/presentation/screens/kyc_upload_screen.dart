@@ -58,7 +58,7 @@ class _KycUploadScreenState extends State<KycUploadScreen> {
                       const Icon(Icons.verified,
                           size: 64, color: KycColors.primary),
                       const SizedBox(height: AppSpacing.md),
-                      Text('KYC Verified Successfully!',
+                      const Text('KYC Verified Successfully!',
                           style: AppTypography.title),
                       const SizedBox(height: AppSpacing.sm),
                       Text('Document ID: ${state.document.documentId}',

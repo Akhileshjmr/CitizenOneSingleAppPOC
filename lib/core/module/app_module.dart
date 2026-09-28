@@ -9,6 +9,9 @@ abstract class AppModule {
   /// Human-readable module title (e.g. 'Agency Banking')
   String get title;
 
+  /// Main initial route path for entering the module (e.g. '/agency-banking')
+  String get initialRoute;
+
   /// Module routes to be registered with the root GoRouter
   List<RouteBase> get routes;
 

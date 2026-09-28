@@ -79,7 +79,7 @@ class _CitizenServicesScreenState extends State<CitizenServicesScreen> {
                     ),
                   ),
                   const SizedBox(height: AppSpacing.lg),
-                  Text('Government e-Services', style: AppTypography.title),
+                  const Text('Government e-Services', style: AppTypography.title),
                   const SizedBox(height: AppSpacing.md),
                   ...state.services.map(
                     (service) => Padding(

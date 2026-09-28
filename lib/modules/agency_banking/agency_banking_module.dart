@@ -12,9 +12,16 @@ class AgencyBankingModule implements AppModule {
   String get title => 'Agency Banking';
 
   @override
+  String get initialRoute => '/agency-banking';
+
+  @override
   List<RouteBase> get routes => [
         GoRoute(
           path: '/agency-banking',
+          builder: (context, state) => const AgencyDashboardScreen(),
+        ),
+        GoRoute(
+          path: '/agency_banking',
           builder: (context, state) => const AgencyDashboardScreen(),
         ),
         ...cashDepositRoutes,

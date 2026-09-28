@@ -59,7 +59,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       const Icon(Icons.mark_email_read,
                           size: 64, color: Colors.green),
                       const SizedBox(height: AppSpacing.md),
-                      Text('Instructions Sent!', style: AppTypography.title),
+                      const Text('Instructions Sent!', style: AppTypography.title),
                       const SizedBox(height: AppSpacing.sm),
                       Text(
                         'Password reset instructions have been dispatched to ${state.email}.',
@@ -95,7 +95,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                           style: AppTypography.title
                               .copyWith(color: CitizenOneColors.primary)),
                       const SizedBox(height: AppSpacing.sm),
-                      Text(
+                      const Text(
                         'Enter your registered Username or Email address to receive password reset instructions.',
                         style: AppTypography.caption,
                       ),

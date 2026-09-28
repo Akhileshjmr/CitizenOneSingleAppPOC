@@ -11,6 +11,9 @@ class MockModule implements AppModule {
   String get title => 'Mock Module';
 
   @override
+  String get initialRoute => '/mock-module';
+
+  @override
   List<RouteBase> get routes => [];
 
   @override

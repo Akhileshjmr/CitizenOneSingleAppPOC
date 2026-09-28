@@ -24,7 +24,7 @@ class AuthApi {
         username: username,
         email: '$username@citizenone.gov',
         token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
-        roles: ['CITIZEN', 'AGENT'],
+        roles: const ['CITIZEN', 'AGENT'],
       );
     }
   }

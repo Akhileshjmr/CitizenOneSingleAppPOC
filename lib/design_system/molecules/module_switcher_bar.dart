@@ -85,7 +85,7 @@ class ModuleSwitcherBar extends StatelessWidget {
             child: Row(
               children: enabledModules.map((module) {
                 final isSelected = module.id == currentModuleId;
-                final routePath = '/${module.id}';
+                final routePath = module.initialRoute;
 
                 return Padding(
                   padding: const EdgeInsets.only(right: AppSpacing.xs),

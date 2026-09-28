@@ -82,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           textAlign: TextAlign.center,
                         ),
-                        Text(
+                        const Text(
                           'Sign in to access unified civic & banking services',
                           style: AppTypography.caption,
                           textAlign: TextAlign.center,

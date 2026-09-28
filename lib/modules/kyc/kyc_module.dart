@@ -15,6 +15,9 @@ class KycModule implements AppModule {
   String get title => 'KYC Verification';
 
   @override
+  String get initialRoute => '/kyc';
+
+  @override
   List<RouteBase> get routes => [
         GoRoute(
           path: '/kyc',

@@ -110,7 +110,7 @@ class RootHomeScreen extends StatelessWidget {
                       const Icon(Icons.lock_outline,
                           size: 36, color: Colors.amber),
                       const SizedBox(width: AppSpacing.md),
-                      Expanded(
+                      const Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -142,7 +142,7 @@ class RootHomeScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'Modular Architecture POC',
                           style: AppTypography.title,
                         ),
@@ -157,7 +157,7 @@ class RootHomeScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: AppSpacing.lg),
-            Text('Active Business Modules', style: AppTypography.title),
+            const Text('Active Business Modules', style: AppTypography.title),
             const SizedBox(height: AppSpacing.sm),
             if (enabledModules.isEmpty)
               const Padding(
@@ -176,7 +176,7 @@ class RootHomeScreen extends StatelessWidget {
                     const SizedBox(height: AppSpacing.sm),
                 itemBuilder: (context, index) {
                   final module = enabledModules[index];
-                  final routePath = '/${module.id}';
+                  final routePath = module.initialRoute;
                   return AppCard(
                     onTap: () => context.push(routePath),
                     child: ListTile(

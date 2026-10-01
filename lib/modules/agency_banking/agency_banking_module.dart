@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:citizenone_app/core/core.dart';
 import 'features/dashboard/agency_dashboard_screen.dart';
 import 'features/cash_deposit/routes/cash_deposit_routes.dart';
+import 'theme/agency_banking_theme.dart';
 
 class AgencyBankingModule implements AppModule {
   @override
@@ -13,6 +15,9 @@ class AgencyBankingModule implements AppModule {
 
   @override
   String get initialRoute => '/agency-banking';
+
+  @override
+  ThemeData? get theme => AgencyBankingTheme.theme;
 
   @override
   List<RouteBase> get routes => [

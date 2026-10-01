@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -17,4 +18,9 @@ abstract class AppModule {
 
   /// Module-level BlocProviders registered at module setup
   List<BlocProvider> get providers;
+
+  /// Module-level custom theme. When [AppTheme.useCentralTheme] is set to false,
+  /// this module theme is used. If null or when [AppTheme.useCentralTheme] is true,
+  /// the central Design System theme is used.
+  ThemeData? get theme => null;
 }

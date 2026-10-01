@@ -1,19 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:citizenone_app/design_system/design_system.dart';
 import 'agency_banking_colors.dart';
 
+/// Module-level Theme definition for Agency Banking
 class AgencyBankingTheme {
-  static ThemeData get theme {
-    return ThemeData(
-      useMaterial3: true,
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: AgencyBankingColors.primary,
-        primary: AgencyBankingColors.primary,
-        secondary: AgencyBankingColors.secondary,
-      ),
-      appBarTheme: const AppBarTheme(
-        backgroundColor: AgencyBankingColors.primary,
-        foregroundColor: Colors.white,
-      ),
-    );
-  }
+  static final ThemeData theme =
+      AppTheme.buildModuleTheme(AgencyBankingColors.primary);
 }

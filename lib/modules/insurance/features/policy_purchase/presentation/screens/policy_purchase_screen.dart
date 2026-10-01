@@ -4,7 +4,6 @@ import 'package:citizenone_app/design_system/design_system.dart';
 import 'package:citizenone_app/core/core.dart';
 import '../cubit/insurance_cubit.dart';
 import '../cubit/insurance_state.dart';
-import 'package:citizenone_app/modules/insurance/theme/insurance_colors.dart';
 
 class PolicyPurchaseScreen extends StatefulWidget {
   const PolicyPurchaseScreen({super.key});
@@ -26,110 +25,156 @@ class _PolicyPurchaseScreenState extends State<PolicyPurchaseScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Insurance & Coverage'),
-        backgroundColor: InsuranceColors.primary,
-        foregroundColor: Colors.white,
-      ),
-      body: Column(
-        children: [
-          const ModuleSwitcherBar(currentModuleId: 'insurance'),
-          Expanded(
-            child: BlocBuilder<InsuranceCubit, InsuranceState>(
-              builder: (context, state) {
-          if (state is InsuranceLoading) {
-            return const AppLoader(message: 'Activating Insurance Policy...');
-          }
+    final primaryColor = Theme.of(context).colorScheme.primary;
 
-          if (state is InsuranceSuccess) {
-            return Center(
-              child: Padding(
-                padding: const EdgeInsets.all(AppSpacing.lg),
-                child: AppCard(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(Icons.shield,
-                          size: 64, color: InsuranceColors.primary),
-                      const SizedBox(height: AppSpacing.md),
-                      Text('Policy Activated!',
-                          style: AppTypography.title
-                              .copyWith(color: InsuranceColors.primary)),
-                      const SizedBox(height: AppSpacing.sm),
-                      Text('Policy ID: ${state.policy.policyId}',
-                          style: AppTypography.caption),
-                      Text('Coverage: ${state.policy.policyName}',
-                          style: AppTypography.subtitle),
-                      Text(
-                          'Premium: ${DateFormatter.formatCurrency(state.policy.premiumAmount)} / month',
-                          style: AppTypography.body),
-                      const SizedBox(height: AppSpacing.lg),
-                      AppButton(
-                        label: 'Purchase Another Plan',
-                        backgroundColor: InsuranceColors.primary,
-                        onPressed: () => context.read<InsuranceCubit>().reset(),
+    return BlocBuilder<InsuranceCubit, InsuranceState>(
+      builder: (context, state) {
+        if (state is InsuranceLoading) {
+          return const AppLoader(message: 'Activating Insurance Policy...');
+        }
+
+        if (state is InsuranceSuccess) {
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(AppSpacing.lg),
+              child: AppCard(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.shield, size: 64, color: primaryColor),
+                    const SizedBox(height: AppSpacing.md),
+                    Text(
+                      'Policy Activated!',
+                      style: AppTypography.title.copyWith(
+                        color: primaryColor,
+                        fontWeight: FontWeight.bold,
                       ),
-                    ],
-                  ),
-                ),
-              ),
-            );
-          }
-
-          return SingleChildScrollView(
-            padding: const EdgeInsets.all(AppSpacing.md),
-            child: AppCard(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Select Insurance Protection Plan',
-                      style: AppTypography.title
-                          .copyWith(color: InsuranceColors.primary)),
-                  const SizedBox(height: AppSpacing.md),
-                  DropdownButtonFormField<String>(
-                    initialValue: _selectedPolicy,
-                    decoration: const InputDecoration(labelText: 'Plan Name'),
-                    items: const [
-                      DropdownMenuItem(
-                          value: 'Health Shield Protection',
-                          child: Text('Health Shield Protection (\$45/mo)')),
-                      DropdownMenuItem(
-                          value: 'Micro-Crop Insurance',
-                          child: Text('Micro-Crop Insurance (\$25/mo)')),
-                      DropdownMenuItem(
-                          value: 'Life & Accident Cover',
-                          child: Text('Life & Accident Cover (\$60/mo)')),
-                    ],
-                    onChanged: (val) {
-                      if (val != null) {
-                        setState(() {
-                          _selectedPolicy = val;
-                          if (val.contains('45')) _premium = 45.0;
-                          if (val.contains('25')) _premium = 25.0;
-                          if (val.contains('60')) _premium = 60.0;
-                        });
-                      }
-                    },
-                  ),
-                  const SizedBox(height: AppSpacing.lg),
-                  SizedBox(
-                    width: double.infinity,
-                    child: AppButton(
-                      label: 'Subscribe Policy',
-                      backgroundColor: InsuranceColors.primary,
-                      onPressed: _submit,
                     ),
-                  ),
-                ],
+                    const SizedBox(height: AppSpacing.sm),
+                    Text('Policy ID: ${state.policy.policyId}',
+                        style: AppTypography.caption),
+                    Text('Coverage: ${state.policy.policyName}',
+                        style: AppTypography.subtitle),
+                    Text(
+                      'Premium: ${DateFormatter.formatCurrency(state.policy.premiumAmount)} / month',
+                      style: AppTypography.body,
+                    ),
+                    const SizedBox(height: AppSpacing.lg),
+                    AppButton(
+                      label: 'Purchase Another Plan',
+                      backgroundColor: primaryColor,
+                      onPressed: () => context.read<InsuranceCubit>().reset(),
+                    ),
+                  ],
+                ),
               ),
             ),
           );
-        },
-      ),
-    ),
-  ],
-),
+        }
+
+        return SingleChildScrollView(
+          padding: const EdgeInsets.all(AppSpacing.md),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              AppCard(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: primaryColor.withValues(alpha: 0.15),
+                          child: Icon(Icons.security, color: primaryColor),
+                        ),
+                        const SizedBox(width: AppSpacing.md),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Insurance & Protection Portal',
+                                style: AppTypography.title.copyWith(
+                                  color: primaryColor,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const Text(
+                                'Select your preferred coverage plan below.',
+                                style: AppTypography.caption,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: AppSpacing.lg),
+                    DropdownButtonFormField<String>(
+                      initialValue: _selectedPolicy,
+                      isExpanded: true,
+                      decoration: InputDecoration(
+                        labelText: 'Insurance Protection Plan',
+                        prefixIcon: Icon(Icons.shield_outlined, color: primaryColor),
+                      ),
+                      items: const [
+                        DropdownMenuItem(
+                            value: 'Health Shield Protection',
+                            child: Text('Health Shield Protection (\$45/mo)')),
+                        DropdownMenuItem(
+                            value: 'Micro-Crop Insurance',
+                            child: Text('Micro-Crop Insurance (\$25/mo)')),
+                        DropdownMenuItem(
+                            value: 'Life & Accident Cover',
+                            child: Text('Life & Accident Cover (\$60/mo)')),
+                      ],
+                      onChanged: (val) {
+                        if (val != null) {
+                          setState(() {
+                            _selectedPolicy = val;
+                            if (val.contains('45')) _premium = 45.0;
+                            if (val.contains('25')) _premium = 25.0;
+                            if (val.contains('60')) _premium = 60.0;
+                          });
+                        }
+                      },
+                    ),
+                    const SizedBox(height: AppSpacing.lg),
+                    Container(
+                      padding: const EdgeInsets.all(AppSpacing.md),
+                      decoration: BoxDecoration(
+                        color: primaryColor.withValues(alpha: 0.08),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text('Monthly Premium:'),
+                          Text(
+                            DateFormatter.formatCurrency(_premium),
+                            style: AppTypography.title.copyWith(
+                              color: primaryColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: AppSpacing.lg),
+                    SizedBox(
+                      width: double.infinity,
+                      child: AppButton(
+                        label: 'Subscribe Policy Plan',
+                        backgroundColor: primaryColor,
+                        onPressed: _submit,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

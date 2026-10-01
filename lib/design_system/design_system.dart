@@ -12,4 +12,5 @@ export 'organisms/app_error_view.dart';
 export 'typography/app_typography.dart';
 export 'spacing/app_spacing.dart';
 export 'layout/app_layout_grid.dart';
+export 'layout/app_shell.dart';
 export 'theme/app_theme.dart';

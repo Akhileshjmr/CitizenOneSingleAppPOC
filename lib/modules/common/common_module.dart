@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:citizenone_app/core/core.dart';
@@ -9,16 +10,20 @@ import 'features/services_overview/presentation/screens/citizen_services_screen.
 import 'features/auth/login/presentation/screens/login_screen.dart';
 import 'features/auth/forgot_password/presentation/screens/forgot_password_screen.dart';
 import 'features/auth/forgot_username/presentation/screens/forgot_username_screen.dart';
+import 'theme/common_theme.dart';
 
-class CitizenOneModule implements AppModule {
+class CommonModule implements AppModule {
   @override
-  String get id => 'citizen_one';
-
-  @override
-  String get title => 'Citizen One';
+  String get id => 'common';
 
   @override
-  String get initialRoute => '/citizen-one';
+  String get title => 'Common Services';
+
+  @override
+  String get initialRoute => '/common';
+
+  @override
+  ThemeData? get theme => CommonTheme.theme;
 
   @override
   List<RouteBase> get routes => [
@@ -35,7 +40,7 @@ class CitizenOneModule implements AppModule {
           builder: (context, state) => const ForgotUsernameScreen(),
         ),
         GoRoute(
-          path: '/citizen-one',
+          path: '/common',
           builder: (context, state) {
             final apiClient = ApiClient();
             final api = CitizenApi(apiClient);
@@ -49,7 +54,7 @@ class CitizenOneModule implements AppModule {
           },
         ),
         GoRoute(
-          path: '/citizen_one',
+          path: '/citizen-one',
           builder: (context, state) {
             final apiClient = ApiClient();
             final api = CitizenApi(apiClient);
@@ -67,3 +72,6 @@ class CitizenOneModule implements AppModule {
   @override
   List<BlocProvider> get providers => [];
 }
+
+@Deprecated('Use CommonModule instead')
+typedef CitizenOneModule = CommonModule;

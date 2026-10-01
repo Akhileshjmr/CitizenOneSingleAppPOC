@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:citizenone_app/core/core.dart';
@@ -6,6 +7,7 @@ import 'features/loan_application/data/repository/loans_repository.dart';
 import 'features/loan_application/domain/usecases/apply_for_loan.dart';
 import 'features/loan_application/presentation/cubit/loan_cubit.dart';
 import 'features/loan_application/presentation/screens/loan_application_screen.dart';
+import 'theme/loans_theme.dart';
 
 class LoansModule implements AppModule {
   @override
@@ -16,6 +18,9 @@ class LoansModule implements AppModule {
 
   @override
   String get initialRoute => '/loans';
+
+  @override
+  ThemeData? get theme => LoansTheme.theme;
 
   @override
   List<RouteBase> get routes => [

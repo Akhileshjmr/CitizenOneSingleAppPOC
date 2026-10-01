@@ -15,10 +15,15 @@ class ModuleMetadata {
 }
 
 const Map<String, ModuleMetadata> availableModulesMap = {
+  'common': ModuleMetadata(
+    id: 'common',
+    importPath: 'package:citizenone_app/modules/common/common.dart',
+    className: 'CommonModule',
+  ),
   'citizen_one': ModuleMetadata(
-    id: 'citizen_one',
-    importPath: 'package:citizenone_app/modules/citizen_one/citizen_one.dart',
-    className: 'CitizenOneModule',
+    id: 'common',
+    importPath: 'package:citizenone_app/modules/common/common.dart',
+    className: 'CommonModule',
   ),
   'agency_banking': ModuleMetadata(
     id: 'agency_banking',

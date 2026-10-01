@@ -15,6 +15,7 @@ class ModuleSwitcherBar extends StatelessWidget {
 
   IconData _getModuleIcon(String id) {
     switch (id) {
+      case 'common':
       case 'citizen_one':
         return Icons.account_balance;
       case 'agency_banking':

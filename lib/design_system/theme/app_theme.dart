@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../tokens/app_color_tokens.dart';
 import '../tokens/app_palette.dart';
 import '../typography/app_typography.dart';
+import 'package:citizenone_app/core/core.dart';
 
 /// AppTheme builds complete Material 3 Light and Dark Themes configured with AppColorTokens and UX4G AppTypography.
 class AppTheme {
@@ -121,6 +122,19 @@ class AppTheme {
         error: lightColorTokens.statusError,
         brightness: Brightness.light,
       ),
+      appBarTheme: AppBarTheme(
+        backgroundColor: lightColorTokens.brandPrimary,
+        foregroundColor: Colors.white,
+        elevation: 2,
+        shadowColor: Colors.black26,
+        centerTitle: false,
+        iconTheme: const IconThemeData(color: Colors.white),
+        actionsIconTheme: const IconThemeData(color: Colors.white),
+        titleTextStyle: AppTypography.headline5.copyWith(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
       cardTheme: CardThemeData(
         color: lightColorTokens.bgCard,
         elevation: 1,
@@ -170,6 +184,19 @@ class AppTheme {
         error: darkColorTokens.statusError,
         brightness: Brightness.dark,
       ),
+      appBarTheme: AppBarTheme(
+        backgroundColor: darkColorTokens.brandPrimary,
+        foregroundColor: Colors.white,
+        elevation: 2,
+        shadowColor: Colors.black26,
+        centerTitle: false,
+        iconTheme: const IconThemeData(color: Colors.white),
+        actionsIconTheme: const IconThemeData(color: Colors.white),
+        titleTextStyle: AppTypography.headline5.copyWith(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
       cardTheme: CardThemeData(
         color: darkColorTokens.bgCard,
         elevation: 1,
@@ -203,4 +230,144 @@ class AppTheme {
       extensions: const [darkColorTokens],
     );
   }
+
+  /// Builds a cohesive ThemeData tailored for a specific business module using its brand seed color.
+  static ThemeData buildModuleTheme(
+    Color seedColor, {
+    Brightness brightness = Brightness.light,
+  }) {
+    final isDark = brightness == Brightness.dark;
+    final colorScheme = ColorScheme.fromSeed(
+      seedColor: seedColor,
+      primary: seedColor,
+      brightness: brightness,
+    );
+
+    return ThemeData(
+      useMaterial3: true,
+      brightness: brightness,
+      fontFamily: AppTypography.fontFamily,
+      scaffoldBackgroundColor: isDark ? AppPalette.neutral900 : AppPalette.neutral50,
+      colorScheme: colorScheme,
+      appBarTheme: AppBarTheme(
+        backgroundColor: seedColor,
+        foregroundColor: Colors.white,
+        elevation: 2,
+        shadowColor: Colors.black26,
+        centerTitle: false,
+        iconTheme: const IconThemeData(color: Colors.white),
+        actionsIconTheme: const IconThemeData(color: Colors.white),
+        titleTextStyle: AppTypography.headline5.copyWith(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      cardTheme: CardThemeData(
+        color: isDark ? AppPalette.neutral800 : AppPalette.white,
+        elevation: 1.5,
+        margin: const EdgeInsets.all(8),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: BorderSide(
+            color: seedColor.withValues(alpha: 0.15),
+            width: 1,
+          ),
+        ),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: isDark ? AppPalette.neutral700 : AppPalette.neutral100,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: seedColor.withValues(alpha: 0.3)),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: seedColor.withValues(alpha: 0.3)),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: seedColor, width: 2),
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: seedColor,
+          foregroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+      ),
+      filledButtonTheme: FilledButtonThemeData(
+        style: FilledButton.styleFrom(
+          backgroundColor: seedColor,
+          foregroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+      ),
+      chipTheme: ChipThemeData(
+        selectedColor: seedColor,
+        secondarySelectedColor: seedColor,
+        labelStyle: const TextStyle(
+          fontFamily: AppTypography.fontFamily,
+          fontSize: 12,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+    );
+  }
+
+  /// Configuration flag notifier to toggle between Central Theme and Module-Specific Themes.
+  /// When set to [true], all modules adopt the central Design System theme.
+  /// When set to [false] (default), modules adopt their respective module-specific brand themes.
+  static final ValueNotifier<bool> useCentralThemeNotifier = ValueNotifier<bool>(false);
+
+  /// Convenient static getter for the central theme configuration flag.
+  static bool get useCentralTheme => useCentralThemeNotifier.value;
+
+  /// Convenient static setter for the central theme configuration flag.
+  static set useCentralTheme(bool value) => useCentralThemeNotifier.value = value;
+
+  /// Map of module IDs to their respective primary brand colors.
+  static const Map<String, Color> moduleBrandColors = {
+    'root': Color(0xFF1E3A8A),
+    'common': Color(0xFF1E3A8A),
+    'citizen_one': Color(0xFF1E3A8A),
+    'agency_banking': Color(0xFF0F766E),
+    'kyc': Color(0xFF6B21A8),
+    'loans': Color(0xFF1E40AF),
+    'insurance': Color(0xFFC2410C),
+  };
+
+  static final Map<String, ThemeData> _lightModuleThemeCache = {};
+  static final Map<String, ThemeData> _darkModuleThemeCache = {};
+
+  /// Retrieves a module-specific theme based on module ID or module instance, respecting [useCentralTheme].
+  static ThemeData getThemeForModule(
+    String moduleId, {
+    AppModule? module,
+    Brightness brightness = Brightness.light,
+  }) {
+    if (useCentralTheme) {
+      return brightness == Brightness.dark ? darkTheme : lightTheme;
+    }
+
+    final cache =
+        brightness == Brightness.dark ? _darkModuleThemeCache : _lightModuleThemeCache;
+
+    return cache.putIfAbsent(moduleId, () {
+      if (module != null && module.theme != null) {
+        return module.theme!;
+      }
+      final brandColor = moduleBrandColors[moduleId];
+      if (brandColor == null) {
+        return brightness == Brightness.dark ? darkTheme : lightTheme;
+      }
+      return buildModuleTheme(brandColor, brightness: brightness);
+    });
+  }
 }
+

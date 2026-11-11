@@ -1,0 +1,35 @@
+<svg height="136.72" id="vector" viewBox="0 0 133.28 136.72" width="133.28"
+    xmlns="http://www.w3.org/2000/svg">
+    <path d="M84.36,79.74L101.73,79.74"
+        fill="#00000000" id="path_0"
+        stroke="#FF00FF"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="4.54" />
+    <path d="M93.22,70.72L93.22,87.94"
+        fill="#00000000"
+        id="path_1" stroke="#FF00FF"
+        stroke-linecap="round"
+        stroke-width="4.54" />
+    <path d="M98.98,63.24L109.34,63.24"
+        fill="#00000000" id="path_2"
+        stroke="#FF00FF"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="3" />
+    <path d="M104.26,57.86L104.26,68.13"
+        fill="#00000000"
+        id="path_3"
+        stroke="#FF00FF"
+        stroke-linecap="round"
+        stroke-width="3" />
+    <path
+        d="m89.27,41.08c0,12.1 -9.81,21.92 -21.92,21.92s-21.92,-9.81 -21.92,-21.92 9.81,-23.92 21.92,-23.92 21.92,11.81 21.92,23.92Z"
+        fill="#00000000"
+        id="path_4"
+        stroke="#FF00FF"
+        stroke-width="14.42" />
+    <path
+        d="m18.15,116.61c6.47,-9.7 14.73,-18.26 24.48,-24.66 9.44,-6.2 21.15,-9.66 32.34,-7.23 -19.19,-0.3 -33.73,15.25 -42.07,31.05 -0.88,1.64 -1.76,3.45 -2.51,5.15 -0.23,0.54 -0.52,1.2 -0.66,1.6 -1.14,3.45 -4.85,5.32 -8.29,4.18 -4.19,-1.31 -5.84,-6.57 -3.29,-10.09h0Z"
+        fill="#FF00FF" id="path_5" />
+</svg>

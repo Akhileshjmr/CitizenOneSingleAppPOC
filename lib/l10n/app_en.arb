@@ -1,0 +1,1413 @@
+{
+  "@@locale": "en",
+
+  "appTitle": "Citizen One",
+  "@appTitle": {
+    "description": "The application name displayed in title bars and splash screen"
+  },
+
+  "appVersion": "v1.0.0",
+  "@appVersion": {
+    "description": "Current application version string"
+  },
+
+  "navHome": "Home",
+  "@navHome": {
+    "description": "Bottom nav bar and side rail: Home tab label"
+  },
+
+  "navServices": "Services",
+  "@navServices": {
+    "description": "Bottom nav bar and side rail: Services tab label"
+  },
+
+  "navAlerts": "Alerts",
+  "@navAlerts": {
+    "description": "Bottom nav bar and side rail: Alerts tab label"
+  },
+
+  "navProfile": "Profile",
+  "@navProfile": {
+    "description": "Bottom nav bar and side rail: Profile tab label"
+  },
+
+  "navPay": "Pay",
+  "@navPay": {
+    "description": "Central QR pay FAB label in bottom nav bar"
+  },
+
+  "headerDashboard": "Dashboard",
+  "@headerDashboard": {
+    "description": "Desktop header title"
+  },
+
+  "headerGreeting": "Good Morning",
+  "@headerGreeting": {
+    "description": "Mobile header greeting shown next to user avatar"
+  },
+
+  "headerLocation": "Lusaka",
+  "@headerLocation": {
+    "description": "Default location label displayed in mobile header"
+  },
+
+  "agentWorkContext": "WORK CONTEXT",
+  "@agentWorkContext": {
+    "description": "Label above context toggle in agent side nav and mobile header"
+  },
+
+  "settingsLabel": "Settings",
+  "@settingsLabel": {
+    "description": "Settings menu item and section group label"
+  },
+
+  "loginWelcomeTitle": "Welcome to CitizenOne",
+  "@loginWelcomeTitle": {
+    "description": "Main heading on login screen"
+  },
+
+  "loginSubtitle": "Sign in to continue",
+  "@loginSubtitle": {
+    "description": "Subtitle below heading on login screen"
+  },
+
+  "loginSelectPersona": "Select Personal",
+  "@loginSelectPersona": {
+    "description": "Label above personal dropdown on login screen"
+  },
+
+  "loginChooseRole": "Choose your role",
+  "authContextSelect": "Select Context",
+  "authRoleCitizen": "Citizen",
+  "authRoleCitizenDesc": "Access personal services and applications",
+  "authRoleAgent": "Service Agent",
+  "authRoleAgentDesc": "Manage applications and help citizens",
+  "@loginChooseRole": {
+    "description": "Hint text for personal dropdown on login screen"
+  },
+
+  "loginValidationSelectPersona": "Please select a personal",
+  "@loginValidationSelectPersona": {
+    "description": "Validation message when no personal is selected on login"
+  },
+
+  "loginUsernameLabel": "Username",
+  "@loginUsernameLabel": {
+    "description": "Label for username field on login screen"
+  },
+
+  "loginUsernameHint": "Enter your username",
+  "@loginUsernameHint": {
+    "description": "Hint text for username field on login screen"
+  },
+
+  "loginValidationUsernameRequired": "Username is required",
+  "@loginValidationUsernameRequired": {
+    "description": "Validation message when username field is empty on login"
+  },
+
+  "loginPasswordLabel": "Password",
+  "@loginPasswordLabel": {
+    "description": "Label for password field on login screen"
+  },
+
+  "loginPasswordHint": "Enter your password",
+  "@loginPasswordHint": {
+    "description": "Hint text for password field on login screen"
+  },
+
+  "loginValidationPasswordRequired": "Password is required",
+  "@loginValidationPasswordRequired": {
+    "description": "Validation message when password field is empty on login"
+  },
+
+  "loginButtonAs": "Login as {roleName}",
+  "@loginButtonAs": {
+    "description": "Login button label when a role is selected",
+    "placeholders": {
+      "roleName": {
+        "type": "String",
+        "example": "Agent"
+      }
+    }
+  },
+
+  "loginButton": "Login",
+  "@loginButton": {
+    "description": "Default login button label when no role is selected"
+  },
+
+  "loginMobileLabel": "Mobile Number",
+  "@loginMobileLabel": {
+    "description": "Label for the mobile number field on the login screen"
+  },
+
+  "loginMobileHint": "Enter your mobile number",
+  "@loginMobileHint": {
+    "description": "Hint text for the mobile number field on the login screen"
+  },
+
+  "loginValidationMobileRequired": "Mobile number is required",
+  "@loginValidationMobileRequired": {
+    "description": "Validation message when the mobile number is empty or malformed on login"
+  },
+
+  "loginForgotPassword": "Forgot Password?",
+  "@loginForgotPassword": {
+    "description": "Link to the forgot-password flow on the login screen"
+  },
+
+  "loginForgotPasswordPending": "Forgot password flow is coming soon.",
+  "@loginForgotPasswordPending": {
+    "description": "Temporary message shown when the user taps Forgot Password before the feature ships"
+  },
+
+  "forgotPasswordBrand": "CitizenOne / ZAMPOST",
+  "@forgotPasswordBrand": {
+    "description": "Branding line at the top of the forgot-password screen"
+  },
+
+  "forgotPasswordTitle": "Forgot Password?",
+  "@forgotPasswordTitle": {
+    "description": "Title of the forgot-password screen"
+  },
+
+  "forgotPasswordBody": "Enter your registered mobile number below — we'll verify your identity and guide you through resetting it.",
+  "@forgotPasswordBody": {
+    "description": "Body text below the forgot-password screen title"
+  },
+
+  "forgotPasswordMobileLabel": "Mobile Number",
+  "@forgotPasswordMobileLabel": {
+    "description": "Label above the mobile-number input on the forgot-password screen"
+  },
+
+  "forgotPasswordMobileHint": "Enter your mobile number",
+  "@forgotPasswordMobileHint": {
+    "description": "Hint for the mobile-number input on the forgot-password screen"
+  },
+
+  "forgotPasswordMobileRequired": "Please enter a valid mobile number",
+  "@forgotPasswordMobileRequired": {
+    "description": "Validation error when the mobile number is missing or invalid"
+  },
+
+  "forgotPasswordInfoBanner": "For your security, we will send a one-time password (OTP) to verify your identity before allowing you to reset your password.",
+  "@forgotPasswordInfoBanner": {
+    "description": "Information banner explaining the identity verification step"
+  },
+
+  "forgotPasswordContinue": "Continue",
+  "@forgotPasswordContinue": {
+    "description": "Continue button on the forgot-password screen"
+  },
+
+  "forgotPasswordRememberPrefix": "Remember your password?",
+  "@forgotPasswordRememberPrefix": {
+    "description": "Prefix text next to the Sign In link on the forgot-password screen"
+  },
+
+  "forgotPasswordSignIn": "Sign In",
+  "@forgotPasswordSignIn": {
+    "description": "Sign In link on the forgot-password screen"
+  },
+
+  "forgotPasswordOtpTitle": "OTP Verification",
+  "@forgotPasswordOtpTitle": {
+    "description": "Title of the OTP verification screen"
+  },
+
+  "forgotPasswordOtpCardTitle": "One Time Verification",
+  "@forgotPasswordOtpCardTitle": {
+    "description": "Card title on the OTP screen"
+  },
+
+  "forgotPasswordOtpBody": "To verify your identity, enter the One-Time Password (OTP) sent to your registered mobile number.",
+  "@forgotPasswordOtpBody": {
+    "description": "Body text on the OTP screen"
+  },
+
+  "forgotPasswordOtpRequired": "OTP is required",
+  "@forgotPasswordOtpRequired": {
+    "description": "Validation error when the OTP is empty"
+  },
+
+  "forgotPasswordOtpInvalid": "Please enter a valid 6-digit OTP",
+  "@forgotPasswordOtpInvalid": {
+    "description": "Validation error when the OTP length is not 6"
+  },
+
+  "forgotPasswordOtpSec": "Sec",
+  "@forgotPasswordOtpSec": {
+    "description": "Seconds unit label next to the OTP countdown"
+  },
+
+  "forgotPasswordOtpAttemptsLeft": "Attempts Left {count}",
+  "@forgotPasswordOtpAttemptsLeft": {
+    "description": "Label showing the number of attempts remaining for the OTP",
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+
+  "forgotPasswordOtpResend": "Resend OTP",
+  "@forgotPasswordOtpResend": {
+    "description": "Resend OTP button label"
+  },
+
+  "forgotPasswordOtpResent": "A new OTP has been sent to your registered mobile number.",
+  "@forgotPasswordOtpResent": {
+    "description": "Confirmation snackbar after a successful OTP resend"
+  },
+
+  "forgotPasswordOtpVerify": "Verify OTP",
+  "@forgotPasswordOtpVerify": {
+    "description": "Verify OTP bottom button label"
+  },
+
+  "createPasswordTitle": "Create Password",
+  "@createPasswordTitle": {
+    "description": "Title of the create password screen"
+  },
+
+  "createPasswordSubtitle": "Set a strong password for your account",
+  "@createPasswordSubtitle": {
+    "description": "Subtitle of the create password screen"
+  },
+
+  "createPasswordNewLabel": "New Password",
+  "@createPasswordNewLabel": {
+    "description": "Label for the new password field"
+  },
+
+  "createPasswordNewHint": "Enter Your New Password",
+  "@createPasswordNewHint": {
+    "description": "Hint for the new password field"
+  },
+
+  "createPasswordConfirmLabel": "Confirm Password",
+  "@createPasswordConfirmLabel": {
+    "description": "Label for the confirm password field"
+  },
+
+  "createPasswordConfirmHint": "Enter Your Confirm Password",
+  "@createPasswordConfirmHint": {
+    "description": "Hint for the confirm password field"
+  },
+
+  "createPasswordRulesTitle": "Your password must contain:",
+  "@createPasswordRulesTitle": {
+    "description": "Title above the password requirements list"
+  },
+
+  "createPasswordMismatch": "Passwords do not match",
+  "@createPasswordMismatch": {
+    "description": "Inline error when confirm password does not match new password"
+  },
+
+  "createPasswordSubmit": "Submit",
+  "@createPasswordSubmit": {
+    "description": "Submit button on the create password screen"
+  },
+
+  "passwordRuleLength": "8 - 30 characters",
+  "@passwordRuleLength": {
+    "description": "Password rule: length must be 8-30 characters"
+  },
+
+  "passwordRuleUpper": "An upper case letter (A-Z)",
+  "@passwordRuleUpper": {
+    "description": "Password rule: must contain an uppercase letter"
+  },
+
+  "passwordRuleLower": "A lower case letter (a-z)",
+  "@passwordRuleLower": {
+    "description": "Password rule: must contain a lowercase letter"
+  },
+
+  "passwordRuleDigit": "A number (0-9)",
+  "@passwordRuleDigit": {
+    "description": "Password rule: must contain a number"
+  },
+
+  "passwordRuleSpecial": "A special character",
+  "@passwordRuleSpecial": {
+    "description": "Password rule: must contain a special character"
+  },
+
+  "passwordRuleNoSuccessiveOver3": "No successive characters over 3",
+  "@passwordRuleNoSuccessiveOver3": {
+    "description": "Password rule: no run of the same character longer than 3"
+  },
+
+  "passwordRuleNoCharMoreThan3": "No character repeated more than 3 times",
+  "@passwordRuleNoCharMoreThan3": {
+    "description": "Password rule: no single character may appear more than 3 times in the password"
+  },
+
+  "passwordSetupRequiredTitle": "Password Setup Required",
+  "@passwordSetupRequiredTitle": {
+    "description": "Title of the password setup required bottom sheet"
+  },
+
+  "passwordSetupRequiredBody": "Your Account has not yet completed the initial password setup. Please reset your password to continue",
+  "@passwordSetupRequiredBody": {
+    "description": "Body text of the password setup required bottom sheet"
+  },
+
+  "passwordSetupRequiredContinue": "Continue",
+  "@passwordSetupRequiredContinue": {
+    "description": "Continue button on the password setup required bottom sheet"
+  },
+
+  "passwordSetupRequiredClose": "Close",
+  "@passwordSetupRequiredClose": {
+    "description": "Close button on the password setup required bottom sheet"
+  },
+
+  "setPasswordTitle": "Set Your Password",
+  "@setPasswordTitle": {
+    "description": "Title of the set password screen"
+  },
+
+  "setPasswordSubtitle": "Set your password to continue",
+  "@setPasswordSubtitle": {
+    "description": "Subtitle of the set password screen"
+  },
+
+  "setPasswordTempLabel": "Temporary Password",
+  "@setPasswordTempLabel": {
+    "description": "Label for the temporary password field"
+  },
+
+  "setPasswordTempHint": "Enter Old Password",
+  "@setPasswordTempHint": {
+    "description": "Hint for the temporary password field"
+  },
+
+  "setPasswordNewLabel": "New Password",
+  "@setPasswordNewLabel": {
+    "description": "Label for the new password field"
+  },
+
+  "setPasswordNewHint": "Enter Your New Password",
+  "@setPasswordNewHint": {
+    "description": "Hint for the new password field"
+  },
+
+  "setPasswordConfirmLabel": "Confirm Password",
+  "@setPasswordConfirmLabel": {
+    "description": "Label for the confirm password field"
+  },
+
+  "setPasswordConfirmHint": "Enter Your Confirm Password",
+  "@setPasswordConfirmHint": {
+    "description": "Hint for the confirm password field"
+  },
+
+  "setPasswordValidationTempRequired": "Temporary password is required",
+  "@setPasswordValidationTempRequired": {
+    "description": "Validation error when the temporary password is empty"
+  },
+
+  "setPasswordValidationNewRequired": "New password is required",
+  "@setPasswordValidationNewRequired": {
+    "description": "Validation error when the new password is empty"
+  },
+
+  "setPasswordValidationNewTooShort": "Password must be at least 8 characters",
+  "@setPasswordValidationNewTooShort": {
+    "description": "Validation error when the new password is too short"
+  },
+
+  "setPasswordValidationNewSameAsTemp": "New password must differ from the temporary password",
+  "@setPasswordValidationNewSameAsTemp": {
+    "description": "Validation error when the new password equals the temporary password"
+  },
+
+  "setPasswordValidationConfirmRequired": "Please confirm your new password",
+  "@setPasswordValidationConfirmRequired": {
+    "description": "Validation error when the confirm password is empty"
+  },
+
+  "setPasswordValidationConfirmMismatch": "Passwords do not match",
+  "@setPasswordValidationConfirmMismatch": {
+    "description": "Validation error when the confirm password does not match the new password"
+  },
+
+  "setPasswordSubmit": "Submit",
+  "@setPasswordSubmit": {
+    "description": "Submit button on the set password screen"
+  },
+
+  "changePasswordTitle": "Change Password",
+  "@changePasswordTitle": {
+    "description": "Title of the agent-initiated change password screen (Settings > Security)"
+  },
+
+  "changePasswordSubtitle": "Update the password for your account",
+  "@changePasswordSubtitle": {
+    "description": "Subtitle of the agent-initiated change password screen"
+  },
+
+  "changePasswordCurrentLabel": "Current Password",
+  "@changePasswordCurrentLabel": {
+    "description": "Label for the current password field"
+  },
+
+  "changePasswordCurrentHint": "Enter Current Password",
+  "@changePasswordCurrentHint": {
+    "description": "Hint for the current password field"
+  },
+
+  "changePasswordValidationCurrentRequired": "Current password is required",
+  "@changePasswordValidationCurrentRequired": {
+    "description": "Validation error when the current password is empty"
+  },
+
+  "changePasswordValidationNewSameAsCurrent": "New password must differ from the current password",
+  "@changePasswordValidationNewSameAsCurrent": {
+    "description": "Validation error when the new password equals the current password"
+  },
+
+  "passwordSuccessTitle": "Success",
+  "@passwordSuccessTitle": {
+    "description": "Title of the password change success screen"
+  },
+
+  "passwordSuccessBody": "Your Password has been Successfully Updated.",
+  "@passwordSuccessBody": {
+    "description": "Body text of the password change success screen"
+  },
+
+  "passwordSuccessLogin": "Login Now",
+  "@passwordSuccessLogin": {
+    "description": "Login Now button on the password change success screen"
+  },
+
+  "splashTagline": "CITIZEN ONE",
+  "@splashTagline": {
+    "description": "All-caps brand tagline displayed on splash screen"
+  },
+
+  "profileTabPersonal": "Personal",
+  "@profileTabPersonal": {
+    "description": "First tab label on customer profile screen"
+  },
+
+  "profileTabSecurity": "Security",
+  "@profileTabSecurity": {
+    "description": "Second tab label on customer profile screen"
+  },
+
+  "profileTabServices": "Services",
+  "@profileTabServices": {
+    "description": "Third tab label on customer profile screen"
+  },
+
+  "profileTabPayments": "Payments",
+  "@profileTabPayments": {
+    "description": "Fourth tab label on customer profile screen"
+  },
+
+  "agentTabProfile": "Profile",
+  "@agentTabProfile": {
+    "description": "First tab label on agent profile screen"
+  },
+
+  "agentTabWork": "Work",
+  "@agentTabWork": {
+    "description": "Second tab label on agent profile screen"
+  },
+
+  "agentTabTransactions": "Transactions",
+  "@agentTabTransactions": {
+    "description": "Third tab label on agent profile screen"
+  },
+
+  "agentTabPerformance": "Performance",
+  "@agentTabPerformance": {
+    "description": "Fourth tab label on agent profile screen"
+  },
+
+  "profileActionLogout": "Log Out",
+  "profileLabelGoldBenefits": "{count} Active Gold Benefits",
+  "@profileLabelGoldBenefits": {
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "@profileActionLogout": {
+    "description": "Log out action button on profile screen"
+  },
+
+  "profileActionDeactivate": "Deactivate / Close Account",
+  "@profileActionDeactivate": {
+    "description": "Account deactivation action button on profile screen"
+  },
+
+  "profileSectionMore": "MORE",
+  "@profileSectionMore": {
+    "description": "Section label above the More accordion group on profile screen"
+  },
+
+  "profileGroupSettings": "Settings",
+  "profileMenuProfileDetails": "Profile Details",
+  "profileMenuContactDetails": "Contact Details",
+  "profileMenuAddressInfo": "Address Information",
+  "profileMenuKycVerification": "KYC / Verification",
+  "profileMenuChangePin": "Change PIN / Password",
+  "profileMenuBiometric": "Biometric Authentication",
+  "profileMenuLoginActivity": "Login Activity",
+  "profileMenuConsent": "Consent & Data Permissions",
+  "profileMenuMyLoans": "My Loans",
+  "profileMenuLoanRepayment": "Loan Repayment Schedule",
+  "profileMenuInsurancePolicies": "My Insurance Policies",
+  "profileMenuInsuranceCoverage": "Insurance Coverage",
+  "profileMenuSubsidies": "Subsidies & Govt Benefits",
+  "profileMenuServiceRequests": "Service Requests",
+  "profileMenuBankAccounts": "Linked Bank Accounts",
+  "profileMenuWallets": "Linked Wallets / Cards",
+  "profileMenuDefaultPayment": "Default Payment Method",
+  "profileMenuTransactionHistory": "Transaction History",
+  "profileMenuStatements": "Statements / Receipts",
+  "profileAgentMenuIdRole": "Agent ID & Role",
+  "profileAgentMenuRegion": "Assigned Region / Branch",
+  "profileAgentMenuValidity": "Validity / Renewal Dates",
+  "profileAgentMenuAgreement": "Agent Agreement",
+  "profileAgentMenuIdProof": "ID Proof / License",
+  "profileAgentMenuCertificates": "Training Certificates",
+  "profileAgentMenuCustomers": "Assigned Customers",
+  "profileAgentMenuTasks": "Pending Tasks",
+  "profileAgentMenuTargets": "Daily / Weekly Targets",
+  "profileAgentMenuTransactions": "Transactions Performed",
+  "profileAgentMenuCollections": "Collections / Disbursements",
+  "profileAgentMenuHistory": "Assisted Services History",
+  "profileAgentMenuBanking": "Banking Services",
+  "profileAgentMenuLoanOrigination": "Loan Origination",
+  "profileAgentMenuInsurance": "Insurance Enrollment",
+  "profileAgentMenuGovSchemes": "Government Schemes",
+  "profileAgentMenuKpis": "KPIs / SLAs",
+  "profileAgentMenuSuccessRate": "Success Rate",
+  "profileAgentMenuTurnaround": "Turnaround Time",
+  "profileAgentMenuCommission": "Commission Summary",
+  "profileAgentMenuPendingPaid": "Pending vs Paid",
+  "profileAgentMenuSettlement": "Settlement History",
+  "profileMenuOfflineMode": "Offline Mode",
+  "profileMenuSyncStatus": "Sync Status",
+  "profileMenuTrainingManuals": "Training & Manuals",
+  "profileMenuDeviceBinding": "Device Binding",
+  "profileMenuSessionHistory": "Session History",
+  "profileMenuActivityLogs": "Activity Logs",
+  "profileMenuGeoTagged": "Geo-tagged Transactions",
+  "profileMenuConsentRecords": "Consent Records",
+  "profileStatKyc": "KYC",
+  "profileStatCards": "Cards",
+  "profileStatLoans": "Loans",
+  "profileStatCustomers": "Customers",
+  "profileStatTarget": "Target",
+  "profileStatEarnings": "Earnings",
+  "profileLabelVerified": "Verified",
+  "profileLabelGold": "Gold",
+  "profileLabelGoldMember": "Gold Member",
+  "profileLabelRegionActive": "Lusaka Region",
+  "profileLabelAccountId": "Account ID: {id}",
+  "@profileLabelAccountId": {
+    "placeholders": {
+      "id": { "type": "String" }
+    }
+  },
+  "profileLabelLastLogin": "{time}",
+  "@profileLabelLastLogin": {
+    "placeholders": {
+      "time": { "type": "String" }
+    }
+  },
+  "profileLabelLinked": "{count} Linked",
+  "profileLabelActiveCount": "{count} Active",
+  "profileLabelFieldAgent": "Field Agent",
+  "notificationsTitle": "Alerts & Notifications",
+  "notificationBillTitle": "Electricity Bill Due",
+  "notificationBillDesc": "Your bill of ZK 450.00 is due tomorrow. Pay now to avoid late fees.",
+  "notificationLoginTitle": "New Login Detected",
+  "notificationLoginDesc": "Login from new device (iPhone 13) in Lusaka.",
+  "notificationInsightTitle": "Smart Insight",
+  "notificationInsightDesc": "You spent 15% less on groceries this week compared to last month. Great job!",
+  "notificationPaymentTitle": "Payment Received",
+  "notificationPaymentDesc": "Received ZK 5,000.00 from John Doe via Wallet.",
+  "notificationTimeHours": "{count} hours ago",
+  "notificationTimeYesterday": "Yesterday",
+  "aiAssistantTitle": "Citizen AI",
+  "aiAssistantTagline": "Always here to help",
+  "aiAssistantInputHint": "Ask anything...",
+  "aiMessageGreeting": "Hello {name}! I noticed you are eligible for a personal loan up to ₹15L with lower interest rates. Would you like to explore?",
+  "@aiMessageGreeting": {
+    "placeholders": {
+      "name": { "type": "String", "example": "Mahesh" }
+    }
+  },
+  "aiMessageUserReply": "Yes, tell me more about the interest rates.",
+  "aiMessageLoanDetails": "Sure! HDFC is offering 10.5% p.a. specially for you. \n\nIf you take ₹5L for 5 years, your EMI will be ₹10,747. You save ₹1,200 compared to standard rates!",
+  "aiActionApplyNow": "Apply Now",
+  "aiActionCompare": "Compare",
+  "loansDashboardTitle": "Loans Dashboard",
+  "loansDashboardSubtitle": "Find the right financing for you",
+  "loanCategoryPersonal": "Personal Loan",
+  "loanCategoryHome": "Home Loan",
+  "loanCategoryVehicle": "Vehicle Loan",
+  "loanCategoryAgri": "Agri Loan",
+  "loanCategoryEducation": "Education",
+  "loanCategoryMsme": "MSME Business",
+  "loanCategoryConstruction": "Construction",
+  "loanCategoryAsset": "Asset Based",
+  "loansPromoTitle": "Need funds quickly?",
+  "loansPromoSubtitle": "Get pre-approved personal loans up to ZK 50,000 instantly.",
+  "loansPromoAction": "Check Loan Eligibility",
+  "loansCategoriesHeader": "Loan Categories",
+  "loansCategoriesViewAll": "View All",
+  "loansLabelAmount": "Loan Amount",
+  "loansLabelInterestRate": "Interest Rate (%)",
+  "loansLabelTenure": "Tenure (Months)",
+  "loansLabelMonthlyEmi": "Monthly EMI",
+  "loansLabelTotalInterest": "Total Interest",
+  "loansLabelTotalPayable": "Total Payable",
+  "loansLabelPrincipalAmount": "Principal Amount",
+  "loansEmiDisclaimer": "* Note: The calculated EMI is indicative and may vary based on bank policies and processing fees.",
+  "loansActionApply": "Apply",
+  "loansActionCancel": "Cancel",
+  "loansStatusTitle": "Application Status",
+  "loansLabelAmountHeader": "Amount",
+  "loansLabelDateHeader": "Date",
+  "loansLabelTrackingHistory": "Tracking History",
+  "loansStatusSubmitted": "Submitted",
+  "loansStatusCreditScoring": "Credit Scoring",
+  "loansStatusEligibility": "Eligibility Check",
+  "loansStatusApproval": "Final Approval",
+  "loansLabelActionRequired": "Action Required",
+  "loansActionUploadDocs": "Upload Documents",
+  "loansEmiCalcTitle": "EMI Calculator",
+  "loansEmiCalcSubtitle": "Plan your finances with our easy calculator",
+  "loansWhyChooseHeader": "Why choose us?",
+  "loansBenefit1Title": "Multiple Banks",
+  "loansBenefit1Subtitle": "Compare rates from over 10+ partners.",
+  "loansBenefit2Title": "Paperless Process",
+  "loansBenefit2Subtitle": "100% digital application and documentation.",
+  "loansMyAppsHeader": "My Applications",
+  "loansAppRef": "Ref: {ref}",
+  "loansAppLastUpdate": "Last update: {date}",
+  "commonServicesTitle": "Common Services",
+  "commonServicesSystemOverview": "System Overview",
+  "commonServicesUptime": "UPTIME",
+  "commonServicesLatency": "LATENCY",
+  "commonServicesQuickAnalytics": "Analytics",
+  "commonServicesQuickTickets": "Tickets",
+  "commonServicesQuickAdmin": "Admin",
+  "commonServicesQuickSupport": "Support",
+  "commonServicesLogs": "Service Logs",
+  "commonServicesUserMgmt": "User Management",
+  "commonServicesSecurity": "Security Controls",
+  "commonServicesAiAlert": "CITIZEN AI ALERT",
+  "commonServicesAiPerf": "Performance",
+  "commonServicesAiStatus": "System load is normal. No incidents reported.",
+  "commonServicesAiDetails": "View Details",
+
+
+
+
+
+
+  "@profileGroupSettings": {
+    "description": "Settings accordion group title on profile screen"
+  },
+
+  "profileGroupSupport": "Support",
+  "@profileGroupSupport": {
+    "description": "Support accordion group title on profile screen"
+  },
+
+  "profileGroupAbout": "About",
+  "@profileGroupAbout": {
+    "description": "About accordion group title on profile screen"
+  },
+
+  "profileGroupSecurity": "Security",
+  "@profileGroupSecurity": {
+    "description": "Security accordion group title on agent profile screen"
+  },
+
+  "profileGroupHelpAbout": "Help & About",
+  "@profileGroupHelpAbout": {
+    "description": "Help and About accordion group title on agent profile screen"
+  },
+
+  "profileMenuLanguage": "Language Selection",
+  "@profileMenuLanguage": {
+    "description": "Language settings menu item on customer profile"
+  },
+
+  "profileMenuNotifications": "Notification Preferences",
+  "@profileMenuNotifications": {
+    "description": "Notification preferences menu item on profile screen"
+  },
+
+  "profileMenuLocation": "Location & Regional Settings",
+  "@profileMenuLocation": {
+    "description": "Location and regional settings menu item on profile screen"
+  },
+
+  "profileMenuTheme": "Theme (Light / Dark)",
+  "@profileMenuTheme": {
+    "description": "Theme toggle menu item on profile screen"
+  },
+
+  "profileMenuSupportTicket": "Raise Support Ticket",
+  "@profileMenuSupportTicket": {
+    "description": "Support ticket menu item on profile screen"
+  },
+
+  "profileMenuFAQs": "FAQs",
+  "@profileMenuFAQs": {
+    "description": "FAQs menu item on profile screen"
+  },
+
+  "profileMenuChatSupport": "Chat / Call Support",
+  "@profileMenuChatSupport": {
+    "description": "Chat / call support menu item on profile screen"
+  },
+
+  "profileMenuReportIssue": "Report an Issue",
+  "@profileMenuReportIssue": {
+    "description": "Report an issue menu item on profile screen"
+  },
+
+  "profileMenuFeedback": "Feedback & Ratings",
+  "@profileMenuFeedback": {
+    "description": "Feedback and ratings menu item on profile screen"
+  },
+
+  "profileMenuAbout": "About CitizenOne",
+  "@profileMenuAbout": {
+    "description": "About CitizenOne menu item on profile screen"
+  },
+
+  "profileMenuWhatsNew": "What's New",
+  "@profileMenuWhatsNew": {
+    "description": "What's New menu item on profile screen"
+  },
+
+  "profileMenuAppVersion": "App Version",
+  "@profileMenuAppVersion": {
+    "description": "App version menu item on profile screen"
+  },
+
+  "profileMenuPrivacyPolicy": "Privacy Policy",
+  "@profileMenuPrivacyPolicy": {
+    "description": "Privacy policy menu item on profile screen"
+  },
+
+  "profileMenuTerms": "Terms & Conditions",
+  "@profileMenuTerms": {
+    "description": "Terms and conditions menu item on profile screen"
+  },
+
+  "quickActionPay": "Pay",
+  "@quickActionPay": {
+    "description": "Quick action button label — Pay (customer role)"
+  },
+
+  "quickActionScanQr": "Scan QR",
+  "@quickActionScanQr": {
+    "description": "Quick action button label — Scan QR (customer role)"
+  },
+
+  "quickActionApplyLoan": "Apply Loan",
+  "@quickActionApplyLoan": {
+    "description": "Quick action button label — Apply Loan (customer role)"
+  },
+
+  "quickActionSupport": "Support",
+  "@quickActionSupport": {
+    "description": "Quick action button label — Support (all roles)"
+  },
+
+  "quickActionAgriLoan": "Agri Loan",
+  "@quickActionAgriLoan": {
+    "description": "Quick action button label — Agri Loan (farmer role)"
+  },
+
+  "quickActionWeather": "Weather",
+  "@quickActionWeather": {
+    "description": "Quick action button label — Weather (farmer role)"
+  },
+
+  "quickActionMarket": "Market",
+  "@quickActionMarket": {
+    "description": "Quick action button label — Market (farmer role)"
+  },
+
+  "quickActionOnboard": "Onboard",
+  "@quickActionOnboard": {
+    "description": "Quick action button label — Onboard (agent role)"
+  },
+
+  "quickActionCollect": "Collect",
+  "@quickActionCollect": {
+    "description": "Quick action button label — Collect (agent role)"
+  },
+
+  "quickActionTodayTasks": "Today Tasks",
+  "@quickActionTodayTasks": {
+    "description": "Quick action button label — Today Tasks (agent role)"
+  },
+
+  "dashboardSectionQuickActions": "Quick Actions",
+  "@dashboardSectionQuickActions": {
+    "description": "Section header for Quick Actions on customer home screen"
+  },
+
+  "dashboardSectionAllServices": "All Services",
+  "@dashboardSectionAllServices": {
+    "description": "Section header for All Services on customer home screen"
+  },
+
+  "dashboardActionViewAll": "View All",
+  "@dashboardActionViewAll": {
+    "description": "Action label on section headers to navigate to full list"
+  },
+
+  "dashboardSectionRecentActivity": "Recent Activity",
+  "@dashboardSectionRecentActivity": {
+    "description": "Section header for Recent Activity on home screen"
+  },
+
+  "heroCardCitizenLabel": "Citizen AI Alert",
+  "@heroCardCitizenLabel": {
+    "description": "Pill label on citizen hero card"
+  },
+
+  "heroCardAgentLabel": "Agent Performance",
+  "@heroCardAgentLabel": {
+    "description": "Pill label on agent hero card"
+  },
+
+  "heroCardFarmerLabel": "WEATHER ALERT",
+  "@heroCardFarmerLabel": {
+    "description": "Pill label on farmer hero card"
+  },
+
+  "heroCardCitizenTitle": "Electricity Bill Due",
+  "@heroCardCitizenTitle": {
+    "description": "Main headline on citizen hero card"
+  },
+
+  "heroCardCitizenDueTag": "Due Tomorrow",
+  "@heroCardCitizenDueTag": {
+    "description": "Due date badge on citizen hero card"
+  },
+
+  "heroCardCitizenDueNote": "Due in 5 days",
+  "@heroCardCitizenDueNote": {
+    "description": "Secondary due date note on citizen hero card (desktop)"
+  },
+
+  "heroCardAgentCommissionLabel": "Commission Earned",
+  "@heroCardAgentCommissionLabel": {
+    "description": "Sub-label above commission value on agent hero card"
+  },
+
+  "heroCardFarmerRainfallLabel": "Rainfall Alert",
+  "@heroCardFarmerRainfallLabel": {
+    "description": "Sub-label above rainfall alert on farmer hero card"
+  },
+
+  "heroCardFarmerRainfallValue": "Heavy Rain",
+  "@heroCardFarmerRainfallValue": {
+    "description": "Main headline value on farmer hero card"
+  },
+
+  "heroCardFarmerRainfallNote": "Expected in 2 days",
+  "@heroCardFarmerRainfallNote": {
+    "description": "Secondary note below rainfall value on farmer hero card"
+  },
+
+  "heroCardFarmerRainExpectedNote": "Heavy Rain Expected",
+  "@heroCardFarmerRainExpectedNote": {
+    "description": "Desktop-only trailing note on farmer hero card"
+  },
+
+  "heroBtnViewTasks": "View Tasks",
+  "@heroBtnViewTasks": {
+    "description": "Primary button label on agent hero card"
+  },
+
+  "heroBtnViewForecast": "View Forecast",
+  "@heroBtnViewForecast": {
+    "description": "Primary button label on farmer hero card"
+  },
+
+  "heroBtnPayNow": "Pay Now",
+  "@heroBtnPayNow": {
+    "description": "Primary button label on citizen hero card"
+  },
+
+  "errorGeneric": "Something went wrong. Please try again.",
+  "@errorGeneric": {
+    "description": "Generic error message shown in error states"
+  },
+
+  "errorNetwork": "No internet connection.",
+  "@errorNetwork": {
+    "description": "Network error message shown when offline"
+  },
+
+  "errorSession": "Your session has expired. Please log in again.",
+  "@errorSession": {
+    "description": "Session expiry error message"
+  },
+
+  "loadingLabel": "Loading…",
+  "@loadingLabel": {
+    "description": "Loading indicator label"
+  },
+
+  "retryLabel": "Retry",
+  "@retryLabel": {
+    "description": "Retry button label"
+  },
+
+  "cancelLabel": "Cancel",
+  "@cancelLabel": {
+    "description": "Cancel button label"
+  },
+
+  "saveLabel": "Save",
+  "@saveLabel": {
+    "description": "Save button label"
+  },
+
+  "confirmLabel": "Confirm",
+  "@confirmLabel": {
+    "description": "Confirm button label"
+  },
+
+  "serviceBankingTitle": "Banking Services",
+  "@serviceBankingTitle": {
+    "description": "Title for the Banking Services screen"
+  },
+  "serviceBankingBalanceLabel": "Total Balance",
+  "serviceBankingBalanceChange": "{percentage} this month",
+  "serviceBankingAccountSavings": "Savings: **** {lastFour}",
+  "serviceBankingActionTransfer": "Transfer",
+  "serviceBankingActionLoan": "Loan",
+  "serviceBankingActionStatements": "Statements",
+  "serviceBankingAccSavings": "Savings\nAccount",
+  "serviceBankingAccCurrent": "Current\nAccount",
+  "serviceBankingAccBusiness": "Business\nAccount",
+  "serviceBankingAccFixed": "Fixed /\nTerm Deposit",
+  "serviceBankingLoanPersonal": "Personal\nLoan",
+  "serviceBankingLoanBusiness": "Business /\nSME Loan",
+  "serviceBankingLoanHome": "Home\nLoan",
+  "serviceBankingLoanVehicle": "Vehicle\nLoan",
+  "serviceBankingLoanAgri": "Agricultural\nLoan",
+  "serviceBankingCardClassic": "Classic /\nStandard",
+  "serviceBankingCardCashback": "Cashback\nCard",
+  "serviceBankingCardRewards": "Rewards\nCard",
+  "serviceBankingCardTravel": "Travel\nCard",
+  "serviceBankingCardPremium": "Premium /\nSignature",
+  "serviceBankingCardSecured": "Secured\nCard",
+  "serviceBankingCardBusiness": "Business /\nCorporate",
+  "serviceBankingCardCobranded": "Co-branded\nCard",
+  "@serviceBankingBalanceLabel": {
+    "description": "Label for balance in banking hero"
+  },
+  "serviceBankingTransactions": "Recent Transactions",
+  "@serviceBankingTransactions": {
+    "description": "Header for recent transactions in banking"
+  },
+  "serviceBankingSectionAccounts": "Accounts",
+  "@serviceBankingSectionAccounts": {
+    "description": "Banking section: Accounts"
+  },
+  "serviceBankingSectionLoans": "Loans",
+  "@serviceBankingSectionLoans": {
+    "description": "Banking section: Loans"
+  },
+  "serviceBankingSectionCards": "Cards",
+  "@serviceBankingSectionCards": {
+    "description": "Banking section: Cards"
+  },
+
+
+  "serviceGovtTitle": "Government Services",
+  "@serviceGovtTitle": {
+    "description": "Title for the Government Services screen"
+  },
+  "serviceGovtSubtitle": "One-stop access to all government portals.",
+  "@serviceGovtSubtitle": {
+    "description": "Subtitle for the Government Services screen"
+  },
+  "serviceGovtHeroTitle": "Citizen Services",
+  "@serviceGovtHeroTitle": {
+    "description": "Headline for govt services hero"
+  },
+  "serviceGovtBlogTitle1": "New Digital Health ID: What You Need to Know",
+  "@serviceGovtBlogTitle1": {
+    "description": "Govt blog title 1"
+  },
+  "serviceGovtBlogSnippet1": "The Govt. has launched Ayushman Bharat Health Account (ABHA). Get your unique digital health ID today.",
+  "@serviceGovtBlogSnippet1": {
+    "description": "Govt blog snippet 1"
+  },
+  "serviceGovtBlogTitle2": "Updated Land Registration Process 2026",
+  "@serviceGovtBlogTitle2": {
+    "description": "Govt blog title 2"
+  },
+  "serviceGovtBlogSnippet2": "Simplified steps to register your property online with the new portal.",
+  "@serviceGovtBlogSnippet2": {
+    "description": "Govt blog snippet 2"
+  },
+
+  "serviceWealthTitle": "Wealth Management",
+  "@serviceWealthTitle": {
+    "description": "Title for Wealth Management screen"
+  },
+  "serviceWealthPortfolioLabel": "Total Portfolio Value",
+  "@serviceWealthPortfolioLabel": {
+    "description": "Label for portfolio value"
+  },
+  "serviceWealthGoalAnalysis": "Goal Analysis",
+  "serviceWealthAiGoalDesc": "You are on track to reach your \"New Car\" goal by Dec 2026.",
+  "serviceWealthActionInvest": "Invest",
+  "serviceWealthActionFunds": "Funds",
+  "serviceWealthActionSIPs": "SIPs",
+  "serviceWealthActionAdvisory": "Advisory",
+  "serviceWealthMutualFunds": "Mutual Fund Operations",
+  "serviceWealthFixedDeposits": "Fixed Deposits",
+  "serviceWealthPensionPlans": "Pension Plans (NPS)",
+  "@serviceWealthGoalAnalysis": {
+    "description": "Wealth AI insight title"
+  },
+  "serviceWealthActionInvest": "Invest",
+  "serviceWealthActionFunds": "Funds",
+  "serviceWealthActionSIPs": "SIPs",
+  "serviceWealthActionAdvisory": "Advisory",
+
+  "serviceInsuranceTitle": "Insurance",
+  "@serviceInsuranceTitle": {
+    "description": "Title for Insurance screen"
+  },
+  "serviceInsuranceActivePolicies": "{count} Active Policies",
+  "@serviceInsuranceActivePolicies": {
+    "description": "Headline for active policies count",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "serviceInsuranceActionBuyNew": "Buy New",
+  "serviceInsuranceActionRenew": "Renew",
+  "serviceInsuranceActionClaim": "Claim",
+  "serviceInsuranceActionMyPolicies": "My Policies",
+  "serviceInsuranceRenewalAlert": "Renewal Alert",
+  "serviceInsuranceAiRenewalDesc": "Car Insurance expires in 5 days. Renew now to avoid inspection.",
+  "serviceInsuranceNetworkHospitals": "Network Hospitals",
+  "serviceInsuranceDownloadPolicy": "Download Policy Copy",
+  "serviceInsuranceClaimStatus": "Claim Status",
+  "@serviceInsuranceRenewalAlert": {
+    "description": "Insurance AI insight title"
+  },
+
+  "serviceBillPayTitle": "Bill Payments",
+  "@serviceBillPayTitle": {
+    "description": "Title for Bill Pay screen"
+  },
+  "serviceBillPayTotalDue": "Total Due",
+  "serviceBillPayDueNote": "Due within {days} days",
+  "@serviceBillPayDueNote": {
+    "placeholders": {
+      "days": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "serviceBillPayActionPayAll": "Pay All Bills",
+  "serviceBillPayActionPayBill": "Pay Bills",
+  "serviceBillPayPrediction": "Bill Prediction",
+  "serviceBillPayAiUsageDesc": "Your electricity bill is expected to be 10% lower next month.",
+  "serviceBillPayActionElectricity": "Electricity",
+  "serviceBillPayActionWater": "Water",
+  "serviceBillPayActionMobile": "Mobile",
+  "serviceBillPayActionAddNew": "Add New",
+  "serviceBillPayHistory": "Payment History",
+  "serviceBillPayManage": "Manage Billers",
+  "serviceBillPayAutoPay": "Auto-Pay Settings",
+  "serviceActionViewUsage": "View Usage",
+
+  "serviceHealthTitle": "HealthEzy",
+  "@serviceHealthTitle": {
+    "description": "Title for HealthEzy screen"
+  },
+  "serviceHealthPassport": "Your Health Passport",
+  "serviceHealthCheckupDue": "Checkup Due",
+  "serviceHealthAiCheckupDesc": "Annual dental checkup is due next week.",
+  "serviceHealthActionVitals": "Vitals",
+  "serviceHealthActionMedicines": "Medicines",
+  "serviceHealthActionLabs": "Lab Tests",
+  "serviceHealthActionRecords": "Records",
+  "serviceHealthSymptomChecker": "Symptom Checker",
+  "serviceHealthVaccination": "Vaccination History",
+  "serviceHealthHospitals": "Find Hospitals Nearby",
+  "serviceActionBookAppointment": "Book Appointment",
+
+  "serviceMobileTitle": "Mobile & Airtime",
+  "@serviceMobileTitle": {
+    "description": "Title for Mobile Recharge screen"
+  },
+  "serviceMobileMyNumber": "My Number",
+  "serviceMobileExpiryNote": "Prepaid • Expires in {days} days",
+  "@serviceMobileExpiryNote": {
+    "placeholders": {
+      "days": {
+        "type": "int",
+        "example": "12"
+      }
+    }
+  },
+  "serviceMobileDataLeft": "Data: {amount} GB left",
+  "@serviceMobileDataLeft": {
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "1.2"
+      }
+    }
+  },
+  "serviceMobilePlanExpiring": "Plan Expiring",
+  "serviceMobileAiPlanExpiringDesc": "Your 5G Data Pack expires tomorrow. Recharge now.",
+  "serviceMobileActionRecharge": "Recharge",
+  "serviceMobileActionDataPack": "Data Pack",
+  "serviceMobileActionPayBill": "Pay Bill",
+  "serviceMobileActionHistory": "History",
+  "serviceMobilePopularPlans": "Popular Plans",
+  "serviceMobileFamilyAccounts": "Family Accounts",
+  "serviceMobileRoaming": "Roaming Services",
+
+
+
+  "serviceGovtSectionHealth": "Health",
+  "@serviceGovtSectionHealth": {
+    "description": "Govt services section: Health"
+  },
+  "serviceGovtSectionEducation": "Education",
+  "@serviceGovtSectionEducation": {
+    "description": "Govt services section: Education"
+  },
+  "serviceGovtSectionLand": "Land & Property",
+  "@serviceGovtSectionLand": {
+    "description": "Govt services section: Land & Property"
+  },
+  "serviceGovtSectionCivic": "Civic & Welfare",
+  "serviceGovtActionTaxes": "Taxes",
+  "serviceGovtActionCertificates": "Certificates",
+  "serviceGovtActionLandRecords": "Land Records",
+  "serviceGovtActionMyDocs": "My Docs",
+  "serviceGovtHealthInsurance": "Health Insurance",
+  "serviceGovtBirthCertificate": "Birth Certificate",
+  "serviceGovtDeathCertificate": "Death Certificate",
+  "serviceGovtFitness": "Physical Fitness",
+  "serviceGovtScholarships": "Scholarships",
+  "serviceGovtAdmissions": "School Admissions",
+  "serviceGovtSkillCertificates": "Skill Certificates",
+  "serviceGovtDigitalLibrary": "Digital Library",
+  "serviceGovtPropertyTax": "Property Tax",
+  "serviceGovtEncumbrance": "Encumbrance",
+  "serviceGovtSurveyMutation": "Survey & Mutation",
+  "serviceGovtAadhaar": "Aadhaar Services",
+  "serviceGovtVoterId": "Voter ID",
+  "serviceGovtPension": "Pension Services",
+  "serviceGovtRti": "RTI Applications",
+  "serviceGovtRelatedUpdates": "Related Updates",
+  "serviceGovtBlogTitle1": "Digital Land Records Update",
+  "serviceGovtBlogSnippet1": "Process for getting land records digitally is now faster.",
+  "serviceGovtBlogTitle2": "New Skill Mission Launched",
+  "serviceGovtBlogSnippet2": "Join the new vocational training programs for youth.",
+  "@serviceGovtSectionCivic": {
+    "description": "Govt services section: Civic & Welfare"
+  },
+  "serviceGovtRelatedUpdates": "RELATED UPDATES",
+  "@serviceGovtRelatedUpdates": {
+    "description": "Label for related updates section in govt services"
+  },
+  "serviceActionViewDetails": "View Details",
+  "@serviceActionViewDetails": {
+    "description": "Generic 'View Details' action label used in services"
+  },
+  "serviceMarketplaceTitle": "Marketplace",
+  "serviceMarketplaceSalesToday": "Sales Today",
+  "serviceMarketplaceOrdersPending": "{count} Orders Pending",
+  "serviceMarketplaceActionListItem": "List Item",
+  "serviceMarketplaceActionOrders": "Orders",
+  "serviceMarketplaceActionLogistics": "Logistics",
+  "serviceMarketplaceActionMyStore": "My Store",
+  "serviceMarketplaceSectionServices": "Services",
+  "serviceMarketplaceCatalog": "Product Catalog",
+  "serviceMarketplaceReviews": "Customer Reviews",
+  "serviceMarketplaceSupport": "Seller Support",
+  "serviceMarketplaceAiDemandForecast": "Demand Forecast",
+  "serviceMarketplaceAiDemandForecastDesc": "Stock up on \"Organic Rice\". High demand expected this weekend.",
+  "serviceLogisticsTitle": "Logistics",
+  "serviceLogisticsActiveShipments": "Active Shipments",
+  "serviceLogisticsDeliveryAlert": "Next delivery expected by {time} today",
+  "serviceLogisticsActionTrackAll": "Track All Shipments",
+  "serviceLogisticsActionBookNow": "Book Now",
+  "serviceLogisticsActionTrack": "Track",
+  "serviceLogisticsActionCalcFare": "Calc Fare",
+  "serviceLogisticsActionMyOrders": "My Orders",
+  "serviceLogisticsSectionServices": "Services",
+  "serviceLogisticsWarehousing": "Warehousing Services",
+  "serviceLogisticsFleet": "Fleet Management",
+  "serviceLogisticsPastShipments": "Past Shipments",
+  "serviceLogisticsAiRouteOptimization": "Route Optimization",
+  "serviceLogisticsAiRouteOptimizationDesc": "Save 20 mins on the Trip #{tripId} via {highway}.",
+  "serviceSportTitle": "Sporting & Mental Health",
+  "serviceSportActiveStreak": "Active Streak",
+  "serviceSportDays": "Days",
+  "serviceSportStreakMotivation": "Keep it up! Physical health boosts mental wealth.",
+  "serviceSportActionWorkouts": "Workouts",
+  "serviceSportActionEvents": "Events",
+  "serviceSportActionCommunity": "Community",
+  "serviceSportActionBook": "Book",
+  "serviceSportSectionServices": "Services",
+  "serviceSportFacilities": "Local Sports Facilities",
+  "serviceSportWellnessGuides": "Mental Wellness Guides",
+  "serviceSportMeditation": "Meditation Zone",
+  "serviceSportAiWellnessTip": "Wellness Tip",
+  "serviceSportAiWellnessTipDesc": "Try a 10-minute walk after lunch to improve digestion and focus.",
+  "labelAiAssistants": "AI Assistants",
+  "labelActionView": "View",
+  "serviceCommonTitle": "Common Svcs",
+  "serviceAgriTitle": "Agri Services",
+  "serviceSmeTitle": "SME Services",
+
+  "loansMarketplaceSubtitle": "Marketplace",
+  "loansFilterAll": "All Offers",
+  "loansFilterLowestRate": "Lowest Rate",
+  "loansFilterFastest": "Fastest Approval",
+  "loansPreApproved": "Pre-Approved",
+  "loansLabelFee": "Fee",
+  "loansInterestRateLabel": "Interest Rate",
+  "loansActionCompare": "Compare",
+  "loansActionSelected": "Selected",
+  "loansCompareBanksSelected": "{count} banks selected",
+  "@loansCompareBanksSelected": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "loansCompareOffersTitle": "Compare Offers",
+  "loansActionViewComparison": "View Comparison",
+  "loansComparePlansTitle": "Compare Plans",
+  "loansCompareInterestRate": "INTEREST RATE (ROI)",
+  "loansCompareProcessingFee": "PROCESSING FEE",
+  "loansCompareMaxAmount": "MAX AMOUNT",
+  "loansCompareFeatures": "FEATURES",
+  "loansBestRate": "Best Rate",
+  "loansPerAnnum": "per annum",
+  "loansCheckEligibilityTitle": "Check Eligibility",
+  "loansEligibilityHeadline": "Tell us about yourself",
+  "loansEligibilitySubheadline": "We'll find the best loan offers for your profile.",
+  "loansLabelMonthlyIncome": "Monthly Income",
+  "loansLabelEmploymentType": "Employment Type",
+  "loansLabelCity": "City",
+  "loansLabelPan": "ID Number (Optional)",
+  "loansActionCheckOffers": "Check Offers",
+  "loansAiAnalysisTitle": "AI Analysis",
+  "loansAiBestMatch": "Best Match Found",
+  "loansAiBestMatchSubtitle": "Highest approval chance for your profile",
+  "loansActionProceedWithOffer": "Proceed with this Offer",
+  "loansCompareWithOthers": "Or compare with others",
+  "loansActionViewComparisonTable": "View Comparison Table",
+  "loansCompareTitle": "Compare Loans",
+  "loansApplicationTitle": "Application",
+  "loansStepPersonal": "Personal",
+  "loansStepKyc": "Documents",
+  "loansStepReview": "Review",
+  "loansSubmittedTitle": "Application Submitted!",
+  "loansSubmittedDescription": "Your application ID is #CO-88291. We will update you shortly.",
+  "loansActionBackToHome": "Back to Home",
+  "loansStepIndicator": "STEP {step} OF {total}",
+  "@loansStepIndicator": {
+    "placeholders": {
+      "step": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+  "loansExistingCustomerQuestion": "Are you an existing customer of {bankName}?",
+  "@loansExistingCustomerQuestion": {
+    "placeholders": {
+      "bankName": { "type": "String" }
+    }
+  },
+  "loansExistingCustomerYes": "Yes, I have an account",
+  "loansExistingCustomerYesDesc": "Faster approval. We'll pre-fill your details from KYC records.",
+  "loansExistingCustomerNo": "No, I am a new customer",
+  "loansExistingCustomerNoDesc": "We'll need a few more details to set up your profile.",
+  "loansLabelNrc": "NRC / ID Number",
+  "loansLabelEmploymentStatus": "Employment Status",
+  "loansEmploymentFullTime": "Full Time Employed",
+  "loansEmploymentPartTime": "Part Time Employed",
+  "loansEmploymentSelfEmployed": "Self Employed / Business",
+  "loansEmploymentRetired": "Retired",
+  "loansFormInfoNote": "Please ensure all details match your official documents. This helps in faster processing.",
+  "loansDocInfoNote": "Since you selected {bankName}, we can fetch your bank statement automatically if you provide consent.",
+  "@loansDocInfoNote": {
+    "placeholders": {
+      "bankName": { "type": "String" }
+    }
+  },
+  "loansUploadPayslip": "Upload Payslip / Proof of Income",
+  "loansUploadPayslipSubtitle": "Latest 3 months • PDF or JPG",
+  "loansUploadNrc": "Upload NRC Copy",
+  "loansUploadNrcSubtitle": "Front and Back • PDF or JPG",
+  "loansApplicantDetails": "Applicant Details",
+  "loansActionEdit": "Edit",
+  "loansLabelNrcNumber": "NRC Number",
+  "loansLabelEmployment": "Employment",
+  "loansLabelDocuments": "Documents",
+  "loansDocsUploaded": "{count} Uploaded",
+  "@loansDocsUploaded": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "loansTermsConfirmation": "I confirm the details provided are accurate and authorize {bankName} to access my credit report for processing this application. I agree to the",
+  "@loansTermsConfirmation": {
+    "placeholders": {
+      "bankName": { "type": "String" }
+    }
+  },
+  "loansTermsOfService": "Terms of Service",
+  "loansSuccessTitle": "Application Submitted!",
+  "loansSuccessDescription": "Your application for {loanType} with {bankName} has been submitted successfully.",
+  "@loansSuccessDescription": {
+    "placeholders": {
+      "loanType": { "type": "String" },
+      "bankName": { "type": "String" }
+    }
+  },
+  "loansReferenceIdLabel": "REFERENCE ID",
+  "loansActionBackToLoansHub": "Back to Loans Hub",
+  "loansActionTrackStatus": "Track Status",
+  "loansActionBackToDashboard": "Back to Dashboard",
+  "loansActionSubmitApplication": "Submit Application",
+  "loansActionContinue": "Continue",
+  "loansLabelTenureYears": "Tenure (Years)",
+  "genericServiceGetStarted": "Get Started"
+}
+

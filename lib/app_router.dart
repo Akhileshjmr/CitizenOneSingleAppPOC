@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:citizenone_app/core/core.dart';
 import 'package:citizenone_app/design_system/design_system.dart';

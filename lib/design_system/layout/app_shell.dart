@@ -82,6 +82,25 @@ class AppShell extends StatelessWidget {
     context.go('/');
   }
 
+  bool _shouldHideTopBar(String path) {
+    // Hide top purple bar and pill switcher on login, auth screens, and dashboards
+    if (path == '/login' ||
+        path.startsWith('/forgot-') ||
+        path.startsWith('/auth/')) {
+      return true;
+    }
+    if (path == '/' ||
+        path == '/dashboard' ||
+        path == '/agent/dashboard' ||
+        path == '/agent' ||
+        path == '/customer' ||
+        path == '/farmer' ||
+        path.startsWith('/agent/partners/insurance')) {
+      return true;
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     final activeModuleId = _resolveActiveModuleId(location);
@@ -101,6 +120,13 @@ class AppShell extends StatelessWidget {
         }
         final activeTheme =
             AppTheme.getThemeForModule(activeModuleId, module: activeModule);
+
+        if (_shouldHideTopBar(location)) {
+          return Theme(
+            data: activeTheme,
+            child: child,
+          );
+        }
 
         return Theme(
           data: activeTheme,

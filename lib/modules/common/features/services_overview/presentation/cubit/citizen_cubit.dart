@@ -11,9 +11,15 @@ class CitizenCubit extends Cubit<CitizenState> {
     emit(const CitizenLoading());
     try {
       final services = await getServicesUseCase();
+      if (isClosed) return;
       emit(CitizenLoaded(services));
     } catch (e) {
+      if (isClosed) return;
       emit(CitizenFailure(e.toString()));
     }
+  }
+
+  void reset() {
+    emit(const CitizenInitial());
   }
 }

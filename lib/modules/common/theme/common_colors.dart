@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:citizenone_app/design_system/tokens/app_palette.dart';
 
 class CommonColors {
-  static const Color primary = Color(0xFF1E3A8A);
-  static const Color secondary = Color(0xFF1E40AF);
-  static const Color accent = Color(0xFF3B82F6);
+  static const Color primary = AppPalette.primary;
+  static const Color secondary = AppPalette.secondary;
+  static const Color accent = AppPalette.secondaryDark;
 }
 
 @Deprecated('Use CommonColors instead')

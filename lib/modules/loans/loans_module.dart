@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -10,6 +11,9 @@ import 'features/loan_application/presentation/screens/loan_application_screen.d
 import 'theme/loans_theme.dart';
 
 class LoansModule implements AppModule {
+  @override
+  ApiClient? apiClient;
+
   @override
   String get id => 'loans';
 
@@ -27,8 +31,8 @@ class LoansModule implements AppModule {
         GoRoute(
           path: '/loans',
           builder: (context, state) {
-            final apiClient = ApiClient();
-            final api = LoansApi(apiClient);
+            final client = apiClient ?? ApiClient();
+            final api = LoansApi(client);
             final repository = LoansRepositoryImpl(api);
             final useCase = ApplyForLoanUseCase(repository);
 
@@ -42,4 +46,24 @@ class LoansModule implements AppModule {
 
   @override
   List<BlocProvider> get providers => [];
+
+  @override
+  FutureOr<void> initialize({ApiClient? apiClient}) {
+    if (apiClient != null) {
+      this.apiClient = apiClient;
+    }
+    AppLogger.info('Initializing Loans module with host client', id);
+  }
+
+  @override
+  FutureOr<void> dispose() {
+    AppLogger.info('Disposing loan application state and clearing in-memory offers', id);
+  }
+
+  @override
+  void onSessionStateChanged(bool isAuthenticated, UserModel? user) {
+    if (!isAuthenticated) {
+      AppLogger.info('Session invalidated for Loans module', id);
+    }
+  }
 }

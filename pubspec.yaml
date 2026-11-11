@@ -1,21 +1,98 @@
 name: citizenone_app
 description: CitizenOne Single Flutter Modular Application (Bloc/Cubit)
 version: 1.0.0+1
-publish_to: 'none'
+publish_to: "none"
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
-  flutter: '>=3.19.0'
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.19.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.6
-  bloc: ^8.1.4
-  go_router: ^14.2.0
+  flutter_localizations:
+    sdk: flutter
+  flutter_bloc: ^9.0.0
+  bloc: ^9.0.0
+  go_router: ^17.1.0
   equatable: ^2.0.5
   http: ^1.2.1
   yaml: ^3.1.2
+  dio: ^5.5.0+1
+  shared_preferences: ^2.2.2
+  intl: ^0.20.2
+  flutter_svg: ^2.0.9
+  flutter_lucide: ^1.8.2
+  freezed_annotation: ^2.4.4
+  cupertino_icons: ^1.0.8
+  google_fonts: ^8.0.1
+  json_annotation: ^4.9.0
+  get_it: ^9.2.0
+  injectable: ^2.7.1+4
+  dartz: ^0.10.1
+  image_picker: ^1.2.2
+  file_picker: ^10.3.10
+  signature: ^6.3.0
+  pinput: ^6.0.2
+  flutter_image_compress: ^2.4.0
+  flutter_secure_storage: ^9.2.2
+  google_generative_ai: ^0.4.7
+  get: ^4.6.6
+  url_launcher: ^6.2.6
+  cached_network_image: ^3.2.3
+  loading_animation_widget: ^1.2.0
+  dropdown_search: ^5.0.3
+  flutter_screenutil: ^5.9.3
+  connectivity_plus: ^7.0.0
+  permission_handler: ^12.0.1
+  path_provider: ^2.1.5
+  encrypt: ^5.0.3
+  decimal: ^2.3.2
+  crypto: ^3.0.3
+  logger: ^2.0.2
+  pointycastle: ^3.7.3
+  flutter_html: ^3.0.0-beta.2
+  carousel_slider: ^5.1.1
+  pdfx: 2.6.0
+  universal_html: ^2.2.4
+  flutter_form_builder: ^10.0.1
+  form_builder_validators: ^11.1.2
+  get_storage: ^2.1.1
+  pretty_dio_logger: ^1.4.0
+  syncfusion_flutter_charts: ^31.1.19
+  syncfusion_flutter_pdfviewer: ^31.1.19
+  flutter_chat_bubble: ^2.0.2
+  flutter_map: ^8.2.2
+  latlong2: ^0.9.1
+  geocoding: ^4.0.0
+  geolocator: ^14.0.2
+  geolocator_web: ^4.1.1
+  google_maps_flutter: ^2.10.0
+  mobile_scanner: ^6.0.6
+  flutter_contacts: ^1.1.6
+  system_proxy_retriever: ^0.2.1
+  root_checker_plus: ^1.0.0
+  root_jailbreak_sniffer: ^1.1.4
+  vpn_connection_detector: ^2.0.2
+  flutter_file_dialog: ^3.0.2
+  package_info_plus: ^8.3.0
+  webview_flutter: ^4.10.0
+  flutter_pdfview: ^1.3.4
+  file_selector: ^1.0.3
+  image: ^4.0.17
+  rflutter_alert: ^2.0.4
+  fluttertoast: ^8.1.2
+  donut_chart: 0.0.1
+  qr_code_scanner_plus: ^2.0.14
+  xml: ^6.5.0
+
+dependency_overrides:
+  device_info_plus: ^11.4.0
+  android_id: ^0.4.0
+  uuid: ^4.4.0
+  intl: 0.20.2
+  flutter_launcher_icons: ^0.13.1
+  html: 0.15.6
 
 dev_dependencies:
   flutter_test:
@@ -23,5 +100,19 @@ dev_dependencies:
   flutter_lints: ^4.0.0
 
 flutter:
+  generate: true
   uses-material-design: true
-
+  assets:
+    - assets/icons/actions/
+    - assets/icons/navigation/
+    - assets/icons/finance/
+    - assets/icons/misc/
+    - assets/icons/services/
+    - assets/icons/loans/
+    - assets/icons/useful_icons/
+    - assets/icons/
+    - assets/images/
+    - assets/images/citizenone/
+    - assets/images/payment/
+    - assets/icons/profile/
+    - assets/web/

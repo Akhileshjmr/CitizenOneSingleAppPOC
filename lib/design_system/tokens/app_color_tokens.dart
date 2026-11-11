@@ -122,17 +122,22 @@ class AppColorTokens extends ThemeExtension<AppColorTokens> {
       brandPrimary: brandPrimary ?? this.brandPrimary,
       brandPrimaryHover: brandPrimaryHover ?? this.brandPrimaryHover,
       brandPrimaryActive: brandPrimaryActive ?? this.brandPrimaryActive,
-      brandPrimaryContainer: brandPrimaryContainer ?? this.brandPrimaryContainer,
+      brandPrimaryContainer:
+          brandPrimaryContainer ?? this.brandPrimaryContainer,
       brandSecondary: brandSecondary ?? this.brandSecondary,
       brandSecondaryHover: brandSecondaryHover ?? this.brandSecondaryHover,
       brandSecondaryActive: brandSecondaryActive ?? this.brandSecondaryActive,
-      brandSecondaryContainer: brandSecondaryContainer ?? this.brandSecondaryContainer,
+      brandSecondaryContainer:
+          brandSecondaryContainer ?? this.brandSecondaryContainer,
       statusSuccess: statusSuccess ?? this.statusSuccess,
-      statusSuccessContainer: statusSuccessContainer ?? this.statusSuccessContainer,
+      statusSuccessContainer:
+          statusSuccessContainer ?? this.statusSuccessContainer,
       statusWarning: statusWarning ?? this.statusWarning,
-      statusWarningContainer: statusWarningContainer ?? this.statusWarningContainer,
+      statusWarningContainer:
+          statusWarningContainer ?? this.statusWarningContainer,
       statusError: statusError ?? this.statusError,
-      statusDangerContainer: statusDangerContainer ?? this.statusDangerContainer,
+      statusDangerContainer:
+          statusDangerContainer ?? this.statusDangerContainer,
       statusInfo: statusInfo ?? this.statusInfo,
       statusInfoContainer: statusInfoContainer ?? this.statusInfoContainer,
       bgMain: bgMain ?? this.bgMain,
@@ -158,21 +163,31 @@ class AppColorTokens extends ThemeExtension<AppColorTokens> {
     if (other is! AppColorTokens) return this;
     return AppColorTokens(
       brandPrimary: Color.lerp(brandPrimary, other.brandPrimary, t)!,
-      brandPrimaryHover: Color.lerp(brandPrimaryHover, other.brandPrimaryHover, t)!,
-      brandPrimaryActive: Color.lerp(brandPrimaryActive, other.brandPrimaryActive, t)!,
-      brandPrimaryContainer: Color.lerp(brandPrimaryContainer, other.brandPrimaryContainer, t)!,
+      brandPrimaryHover:
+          Color.lerp(brandPrimaryHover, other.brandPrimaryHover, t)!,
+      brandPrimaryActive:
+          Color.lerp(brandPrimaryActive, other.brandPrimaryActive, t)!,
+      brandPrimaryContainer:
+          Color.lerp(brandPrimaryContainer, other.brandPrimaryContainer, t)!,
       brandSecondary: Color.lerp(brandSecondary, other.brandSecondary, t)!,
-      brandSecondaryHover: Color.lerp(brandSecondaryHover, other.brandSecondaryHover, t)!,
-      brandSecondaryActive: Color.lerp(brandSecondaryActive, other.brandSecondaryActive, t)!,
-      brandSecondaryContainer: Color.lerp(brandSecondaryContainer, other.brandSecondaryContainer, t)!,
+      brandSecondaryHover:
+          Color.lerp(brandSecondaryHover, other.brandSecondaryHover, t)!,
+      brandSecondaryActive:
+          Color.lerp(brandSecondaryActive, other.brandSecondaryActive, t)!,
+      brandSecondaryContainer: Color.lerp(
+          brandSecondaryContainer, other.brandSecondaryContainer, t)!,
       statusSuccess: Color.lerp(statusSuccess, other.statusSuccess, t)!,
-      statusSuccessContainer: Color.lerp(statusSuccessContainer, other.statusSuccessContainer, t)!,
+      statusSuccessContainer: Color.lerp(
+          statusSuccessContainer, other.statusSuccessContainer, t)!,
       statusWarning: Color.lerp(statusWarning, other.statusWarning, t)!,
-      statusWarningContainer: Color.lerp(statusWarningContainer, other.statusWarningContainer, t)!,
+      statusWarningContainer: Color.lerp(
+          statusWarningContainer, other.statusWarningContainer, t)!,
       statusError: Color.lerp(statusError, other.statusError, t)!,
-      statusDangerContainer: Color.lerp(statusDangerContainer, other.statusDangerContainer, t)!,
+      statusDangerContainer: Color.lerp(
+          statusDangerContainer, other.statusDangerContainer, t)!,
       statusInfo: Color.lerp(statusInfo, other.statusInfo, t)!,
-      statusInfoContainer: Color.lerp(statusInfoContainer, other.statusInfoContainer, t)!,
+      statusInfoContainer:
+          Color.lerp(statusInfoContainer, other.statusInfoContainer, t)!,
       bgMain: Color.lerp(bgMain, other.bgMain, t)!,
       bgCard: Color.lerp(bgCard, other.bgCard, t)!,
       bgInput: Color.lerp(bgInput, other.bgInput, t)!,

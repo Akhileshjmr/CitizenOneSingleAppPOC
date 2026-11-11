@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -10,6 +11,9 @@ import 'features/document_upload/presentation/screens/kyc_upload_screen.dart';
 import 'theme/kyc_theme.dart';
 
 class KycModule implements AppModule {
+  @override
+  ApiClient? apiClient;
+
   @override
   String get id => 'kyc';
 
@@ -27,8 +31,8 @@ class KycModule implements AppModule {
         GoRoute(
           path: '/kyc',
           builder: (context, state) {
-            final apiClient = ApiClient();
-            final api = KycApi(apiClient);
+            final client = apiClient ?? ApiClient();
+            final api = KycApi(client);
             final repository = KycRepositoryImpl(api);
             final useCase = UploadKycDocumentUseCase(repository);
 
@@ -42,4 +46,24 @@ class KycModule implements AppModule {
 
   @override
   List<BlocProvider> get providers => [];
+
+  @override
+  FutureOr<void> initialize({ApiClient? apiClient}) {
+    if (apiClient != null) {
+      this.apiClient = apiClient;
+    }
+    AppLogger.info('Initializing KYC Verification module with host client', id);
+  }
+
+  @override
+  FutureOr<void> dispose() {
+    AppLogger.info('Disposing KYC document caches and temporary file references', id);
+  }
+
+  @override
+  void onSessionStateChanged(bool isAuthenticated, UserModel? user) {
+    if (!isAuthenticated) {
+      AppLogger.info('Session invalidated for KYC Verification', id);
+    }
+  }
 }

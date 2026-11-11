@@ -21,7 +21,16 @@ class CashDepositApi {
     try {
       final response = await apiClient.post(endpoint, body: requestBody);
       return CashDepositModel.fromJson(response);
-    } catch (_) {
+    } catch (e) {
+      // In production, strictly fail closed - do not pretend transactions succeeded
+      if (apiClient.env?.isProduction ?? false) {
+        rethrow;
+      }
+
+      AppLogger.info(
+        'Demo Mode: Simulating cash deposit transaction for account ${SecurityUtils.maskAccountNumber(accountNumber)}',
+        'CashDepositApi',
+      );
       await Future.delayed(const Duration(milliseconds: 600));
       return CashDepositModel(
         transactionId: 'TXN-${DateTime.now().millisecondsSinceEpoch}',

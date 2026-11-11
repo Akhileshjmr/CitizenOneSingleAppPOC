@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:citizenone_app/design_system/tokens/app_palette.dart';
 
 class LoansColors {
-  static const Color primary = Color(0xFF1E40AF);
-  static const Color secondary = Color(0xFF1D4ED8);
-  static const Color accent = Color(0xFFF59E0B);
+  static const Color primary = AppPalette.primary;
+  static const Color secondary = AppPalette.secondary;
+  static const Color accent = AppPalette.secondaryDark;
 }

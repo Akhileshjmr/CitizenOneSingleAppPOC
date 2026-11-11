@@ -44,43 +44,46 @@ The monorepo contains 5 independently structured business modules:
 ## 3. Repository Architecture
 
 ```text
-citizenone/
+CitizenOneApp/
 │
-├── apps/
-│   └── citizenone_app/             # Main Application Shell & App Router
-│
-├── packages/
-│   ├── core/                       # Shared Http ApiClient, AppModule contract, Auth/Security
-│   ├── design_system/              # Material 3 generic UI components & theme tokens
+├── lib/
+│   ├── main.dart                   # Application bootstrap & runtime environment setup
+│   ├── app.dart                    # Root MaterialApp & global theme configuration
+│   ├── app_router.dart             # Root GoRouter with declarative route auth guards
 │   │
-│   ├── citizen_one/                # Business Module Package
-│   ├── agency_banking/             # Business Module Package
-│   ├── kyc/                        # Business Module Package
-│   ├── loans/                      # Business Module Package
-│   └── insurance/                  # Business Module Package
+│   ├── core/                       # Shared platform infrastructure (ApiClient, AppEnv, Auth, Logging)
+│   ├── design_system/              # Central design tokens, typography, and reusable UI atoms/molecules
+│   │
+│   ├── modules/                    # Pluggable business modules (Clean Architecture slices)
+│   │   ├── common/                 # Civic services, portal auth, performance yield
+│   │   ├── agency_banking/         # Agent operations, cash deposit, dashboard
+│   │   ├── kyc/                    # Identity document verification & status
+│   │   ├── loans/                  # Micro-loan application & eligibility
+│   │   └── insurance/              # Policy subscription & claims
+│   │
+│   └── generated/
+│       └── enabled_modules.dart    # Build-time generated active module registry
 │
 ├── build/
 │   └── modules.yaml                # Build configuration file selecting enabled modules
 │
 ├── tool/
-│   └── generate_modules.dart       # Code generation script for active modules
+│   ├── generate_modules.dart       # Code generation CLI with canonical ID deduplication
+│   └── verify_boundaries.dart      # Static boundary audit tool enforcing layer rules
 │
-├── docs/
-│   └── architecture.md             # In-depth architectural specification
-│
-├── melos.yaml                      # Monorepo management configuration
-├── pubspec.yaml                    # Root workspace pubspec
-└── README.md                       # Main documentation
+└── test/                           # 100% passing unit, widget, and architecture tests
 ```
 
 ---
 
-## 4. Why Modules Are Local Packages
+## 4. Modular Structure & Future Package Scalability
 
-1. **Strict Dependency Boundaries**: Keeps code modular. Core or Design System cannot accidentally import code from a business module.
-2. **Independent Testability**: Every business module package can be tested in isolation with `flutter test` without compiling the full application.
-3. **Build-Time Selectivity**: Allows selecting which package entrypoints to import in `enabled_modules.dart`. Unused package code is eliminated during compilation.
-4. **Reusability across Multiple App Targets**: Multiple app shells (e.g., Agent App vs Consumer App) can compose different combinations of the same business module packages.
+The project is structured as a **Modular Architecture** optimized for developer ergonomics, high performance, and rapid onboarding:
+
+1. **Simplicity & Zero Tooling Overhead**: No complex monorepo tooling (like Melos) or local package path symlinks are required. Any new developer can clone and run `flutter run` immediately.
+2. **Strict Boundary Enforcement**: Architectural boundary rules (Rule 1: Zero Inter-Module Imports; Inverted Core/Design-System Dependencies) are strictly enforced by automated CI tooling via `dart run tool/verify_boundaries.dart`.
+3. **Build-Time Selectivity**: Modules excluded from `build/modules.yaml` are not imported or instantiated in `enabled_modules.dart`, allowing Dart's static compiler to tree-shake unused code from release builds.
+4. **Future Multi-Package Extraction**: Because each module under `lib/modules/` adheres to Clean Architecture and communicates strictly through the `AppModule` interface and path URIs, migrating any module into an isolated Flutter package (`packages/<module_name>`) later requires zero architectural refactoring.
 
 ---
 

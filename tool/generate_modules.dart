@@ -1,14 +1,16 @@
 import 'dart:io';
 import 'package:yaml/yaml.dart';
 
-/// Known available business modules and their class metadata
+/// Known available business modules and their class metadata.
 class ModuleMetadata {
   final String id;
+  final String canonicalId;
   final String importPath;
   final String className;
 
   const ModuleMetadata({
     required this.id,
+    required this.canonicalId,
     required this.importPath,
     required this.className,
   });
@@ -17,32 +19,38 @@ class ModuleMetadata {
 const Map<String, ModuleMetadata> availableModulesMap = {
   'common': ModuleMetadata(
     id: 'common',
+    canonicalId: 'common',
     importPath: 'package:citizenone_app/modules/common/common.dart',
     className: 'CommonModule',
   ),
   'citizen_one': ModuleMetadata(
-    id: 'common',
+    id: 'citizen_one',
+    canonicalId: 'common',
     importPath: 'package:citizenone_app/modules/common/common.dart',
     className: 'CommonModule',
   ),
   'agency_banking': ModuleMetadata(
     id: 'agency_banking',
+    canonicalId: 'agency_banking',
     importPath:
         'package:citizenone_app/modules/agency_banking/agency_banking.dart',
     className: 'AgencyBankingModule',
   ),
   'kyc': ModuleMetadata(
     id: 'kyc',
+    canonicalId: 'kyc',
     importPath: 'package:citizenone_app/modules/kyc/kyc.dart',
     className: 'KycModule',
   ),
   'loans': ModuleMetadata(
     id: 'loans',
+    canonicalId: 'loans',
     importPath: 'package:citizenone_app/modules/loans/loans.dart',
     className: 'LoansModule',
   ),
   'insurance': ModuleMetadata(
     id: 'insurance',
+    canonicalId: 'insurance',
     importPath: 'package:citizenone_app/modules/insurance/insurance.dart',
     className: 'InsuranceModule',
   ),
@@ -78,7 +86,9 @@ void main(List<String> args) {
     exit(1);
   }
 
+  final seenCanonicalIds = <String>{};
   final selectedModules = <ModuleMetadata>[];
+
   for (final item in rawModules) {
     final id = item.toString().trim();
     if (!availableModulesMap.containsKey(id)) {
@@ -88,7 +98,18 @@ void main(List<String> args) {
       );
       exit(1);
     }
-    selectedModules.add(availableModulesMap[id]!);
+
+    final meta = availableModulesMap[id]!;
+    if (seenCanonicalIds.contains(meta.canonicalId)) {
+      stderr.writeln(
+        'Error: Duplicate module selection for canonical module "${meta.canonicalId}" '
+        '(via "$id") in $configPath. Each business module may only be registered once.',
+      );
+      exit(1);
+    }
+
+    seenCanonicalIds.add(meta.canonicalId);
+    selectedModules.add(meta);
   }
 
   final buffer = StringBuffer();

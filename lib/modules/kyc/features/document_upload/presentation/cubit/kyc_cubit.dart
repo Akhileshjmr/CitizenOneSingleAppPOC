@@ -14,8 +14,10 @@ class KycCubit extends Cubit<KycState> {
     emit(const KycLoading());
     try {
       final doc = await uploadUseCase(type: type, number: number);
+      if (isClosed) return;
       emit(KycSuccess(doc));
     } catch (e) {
+      if (isClosed) return;
       emit(KycFailure(e.toString()));
     }
   }

@@ -116,16 +116,16 @@ The root application shell ([`lib/app.dart`](file:///Users/akhilesh/Documents/JM
 ### Rule 2: Strict Unidirectional Dependency Direction (No Inter-Module Imports)
 * **Allowed:** `Module -> Core`, `Module -> Design System`, `Shell -> Modules`.
 * **PROHIBITED:** `Module A -> Module B` (e.g. `lib/modules/loans` **must never** write `import 'package:citizenone_app/modules/insurance/...'`).
-* **Enforcement:** Custom linter rules flag direct cross-module imports as compilation errors.
+* **Enforcement:** Automated boundary static audit gate via `dart run tool/verify_boundaries.dart`. Fails CI if any inter-module or host imports are detected.
 
 ### Rule 3: Lean Technical Core (No Business Logic in Core)
-`lib/core/` contains strictly cross-cutting technical capabilities (`ApiClient`, `SecurityUtils`, formatters). Business domain logic (e.g., loan calculations, cash deposit processing) **must remain inside its respective module**.
+`lib/core/` contains strictly cross-cutting technical capabilities (`ApiClient`, `AppEnv`, `LoggingPolicy`, `SecurityUtils`, formatters). Business domain logic (e.g., loan calculations, cash deposit processing) **must remain inside its respective module**.
 
 ### Rule 4: Centralized Identity + Module-Level Authorization
-`AuthCubit` manages global user authentication state (`User`). Module access is governed by role-based authorization permissions (`roles: ['CITIZEN', 'AGENT']`) and backend verification. Hiding UI elements is treated purely as UX; backend APIs enforce access tokens independently.
+`AuthCubit` manages global user authentication state (`UserModel`) and triggers symmetrical session lifecycle hooks across all active modules (`initialize`, `dispose`, `onSessionStateChanged`). Sensitive credentials are never handed off in cleartext; scoped JWTs (`ScopedToken`) are issued per target vertical.
 
-### Rule 5: Decoupled Path Routing via Contract Polymorphism
-Modules register their routes by implementing `AppModule` ([`lib/core/module/app_module.dart`](file:///Users/akhilesh/Documents/JMR/CitizenOneApp/lib/core/module/app_module.dart)):
+### Rule 5: Decoupled Path Routing & Lifecycle Contract (`ModuleEntry`)
+Modules register their routes and lifecycle hooks by implementing `AppModule` / `ModuleEntry` ([`lib/core/module/app_module.dart`](file:///Users/akhilesh/Documents/JMR/CitizenOneApp/lib/core/module/app_module.dart)):
 
 ```dart
 abstract class AppModule {
@@ -134,7 +134,14 @@ abstract class AppModule {
   String get initialRoute;
   List<RouteBase> get routes;
   List<BlocProvider> get providers;
+  ThemeData? get theme => null;
+
+  FutureOr<void> initialize() {}
+  FutureOr<void> dispose() {}
+  void onSessionStateChanged(bool isAuthenticated, UserModel? user) {}
 }
+
+typedef ModuleEntry = AppModule;
 ```
 Cross-module navigation is performed strictly via **path string URIs** (`context.push('/loans')`, `context.push('/kyc')`).
 

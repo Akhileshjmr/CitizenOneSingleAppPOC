@@ -7,27 +7,27 @@ import 'package:citizenone_app/core/core.dart';
 /// AppTheme builds complete Material 3 Light and Dark Themes configured with AppColorTokens and UX4G AppTypography.
 class AppTheme {
   // Light Theme Tokens derived from AppPalette
-  static const lightColorTokens = AppColorTokens(
-    brandPrimary: AppPalette.primary600,
-    brandPrimaryHover: AppPalette.primary700,
-    brandPrimaryActive: AppPalette.primary800,
-    brandPrimaryContainer: AppPalette.primary50,
+  static final lightColorTokens = AppColorTokens(
+    brandPrimary: AppPalette.primary,
+    brandPrimaryHover: AppPalette.primary,
+    brandPrimaryActive: AppPalette.primary,
+    brandPrimaryContainer: AppPalette.primary.withValues(alpha: 0.1),
 
-    brandSecondary: AppPalette.secondary600,
-    brandSecondaryHover: AppPalette.secondary700,
-    brandSecondaryActive: AppPalette.secondary800,
-    brandSecondaryContainer: AppPalette.secondary100,
+    brandSecondary: AppPalette.secondary,
+    brandSecondaryHover: AppPalette.secondary,
+    brandSecondaryActive: AppPalette.secondary,
+    brandSecondaryContainer: AppPalette.secondary.withValues(alpha: 0.1),
 
-    statusSuccess: AppPalette.success600,
-    statusSuccessContainer: AppPalette.success50,
-    statusWarning: AppPalette.warning500,
-    statusWarningContainer: AppPalette.warning50,
-    statusError: AppPalette.danger600,
-    statusDangerContainer: AppPalette.danger50,
-    statusInfo: AppPalette.info500,
-    statusInfoContainer: AppPalette.info50,
+    statusSuccess: AppPalette.success,
+    statusSuccessContainer: AppPalette.success.withValues(alpha: 0.1),
+    statusWarning: AppPalette.warning,
+    statusWarningContainer: AppPalette.warning.withValues(alpha: 0.1),
+    statusError: AppPalette.danger,
+    statusDangerContainer: AppPalette.danger.withValues(alpha: 0.1),
+    statusInfo: AppPalette.info,
+    statusInfoContainer: AppPalette.info.withValues(alpha: 0.1),
 
-    bgMain: AppPalette.neutral50,
+    bgMain: AppPalette.bgMain,
     bgCard: AppPalette.white,
     bgInput: AppPalette.neutral100,
     bgModal: AppPalette.white,
@@ -37,37 +37,37 @@ class AppTheme {
     textSecondary: AppPalette.neutral600,
     textMuted: AppPalette.neutral400,
     textOnPrimary: AppPalette.white,
-    textLink: AppPalette.primary600,
+    textLink: AppPalette.primary,
 
     borderDefault: AppPalette.neutral200,
     borderOutline: AppPalette.neutral300,
-    borderFocused: AppPalette.primary600,
+    borderFocused: AppPalette.primary,
     borderSubtle: AppPalette.neutral200,
     divider: AppPalette.neutral100,
   );
 
   // Dark Theme Tokens derived from AppPalette
-  static const darkColorTokens = AppColorTokens(
-    brandPrimary: AppPalette.primary400,
-    brandPrimaryHover: AppPalette.primary300,
-    brandPrimaryActive: AppPalette.primary200,
-    brandPrimaryContainer: AppPalette.primary950,
+  static final darkColorTokens = AppColorTokens(
+    brandPrimary: AppPalette.primaryDark,
+    brandPrimaryHover: AppPalette.primaryDark,
+    brandPrimaryActive: AppPalette.primaryDark,
+    brandPrimaryContainer: AppPalette.primaryDark.withValues(alpha: 0.2),
 
-    brandSecondary: AppPalette.secondary400,
-    brandSecondaryHover: AppPalette.secondary300,
-    brandSecondaryActive: AppPalette.secondary200,
-    brandSecondaryContainer: AppPalette.secondary900,
+    brandSecondary: AppPalette.secondaryDark,
+    brandSecondaryHover: AppPalette.secondaryDark,
+    brandSecondaryActive: AppPalette.secondaryDark,
+    brandSecondaryContainer: AppPalette.secondaryDark.withValues(alpha: 0.2),
 
-    statusSuccess: AppPalette.success400,
-    statusSuccessContainer: AppPalette.success950,
-    statusWarning: AppPalette.warning400,
-    statusWarningContainer: AppPalette.warning950,
-    statusError: AppPalette.danger400,
-    statusDangerContainer: AppPalette.danger950,
-    statusInfo: AppPalette.info400,
-    statusInfoContainer: AppPalette.info950,
+    statusSuccess: AppPalette.success,
+    statusSuccessContainer: AppPalette.success.withValues(alpha: 0.2),
+    statusWarning: AppPalette.warning,
+    statusWarningContainer: AppPalette.warning.withValues(alpha: 0.2),
+    statusError: AppPalette.danger,
+    statusDangerContainer: AppPalette.danger.withValues(alpha: 0.2),
+    statusInfo: AppPalette.info,
+    statusInfoContainer: AppPalette.info.withValues(alpha: 0.2),
 
-    bgMain: AppPalette.neutral900,
+    bgMain: AppPalette.bgDarkMain,
     bgCard: AppPalette.neutral800,
     bgInput: AppPalette.neutral700,
     bgModal: AppPalette.neutral800,
@@ -77,11 +77,11 @@ class AppTheme {
     textSecondary: AppPalette.neutral300,
     textMuted: AppPalette.neutral500,
     textOnPrimary: AppPalette.white,
-    textLink: AppPalette.primary400,
+    textLink: AppPalette.primaryDark,
 
     borderDefault: AppPalette.neutral700,
     borderOutline: AppPalette.neutral600,
-    borderFocused: AppPalette.primary400,
+    borderFocused: AppPalette.primaryDark,
     borderSubtle: AppPalette.neutral800,
     divider: AppPalette.neutral800,
   );
@@ -165,7 +165,7 @@ class AppTheme {
         space: 1,
         thickness: 1,
       ),
-      extensions: const [lightColorTokens],
+      extensions: [lightColorTokens],
     );
   }
 
@@ -227,7 +227,7 @@ class AppTheme {
         space: 1,
         thickness: 1,
       ),
-      extensions: const [darkColorTokens],
+      extensions: [darkColorTokens],
     );
   }
 
@@ -332,14 +332,14 @@ class AppTheme {
   static set useCentralTheme(bool value) => useCentralThemeNotifier.value = value;
 
   /// Map of module IDs to their respective primary brand colors.
-  static const Map<String, Color> moduleBrandColors = {
-    'root': Color(0xFF1E3A8A),
-    'common': Color(0xFF1E3A8A),
-    'citizen_one': Color(0xFF1E3A8A),
-    'agency_banking': Color(0xFF0F766E),
-    'kyc': Color(0xFF6B21A8),
-    'loans': Color(0xFF1E40AF),
-    'insurance': Color(0xFFC2410C),
+  static final Map<String, Color> moduleBrandColors = {
+    'root': AppPalette.primary,
+    'common': AppPalette.primary,
+    'citizen_one': AppPalette.primary,
+    'agency_banking': AppPalette.primary,
+    'kyc': AppPalette.primary,
+    'loans': AppPalette.primary,
+    'insurance': AppPalette.primary,
   };
 
   static final Map<String, ThemeData> _lightModuleThemeCache = {};

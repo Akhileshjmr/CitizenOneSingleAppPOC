@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:citizenone_app/design_system/tokens/app_palette.dart';
 
 class InsuranceColors {
-  static const Color primary = Color(0xFFC2410C);
-  static const Color secondary = Color(0xFF9A3412);
-  static const Color accent = Color(0xFFFB923C);
+  static const Color primary = AppPalette.primary;
+  static const Color secondary = AppPalette.secondary;
+  static const Color accent = AppPalette.secondaryDark;
 }

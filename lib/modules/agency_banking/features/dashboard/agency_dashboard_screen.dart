@@ -84,7 +84,7 @@ class AgencyDashboardScreen extends StatelessWidget {
           const SizedBox(height: AppSpacing.md),
           GridView.count(
             crossAxisCount: 2,
-            childAspectRatio: 1.15,
+            childAspectRatio: 1.25,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             crossAxisSpacing: AppSpacing.md,
@@ -142,24 +142,30 @@ class AgencyDashboardScreen extends StatelessWidget {
   }) {
     return AppCard(
       onTap: onTap,
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CircleAvatar(
             backgroundColor: color.withValues(alpha: 0.15),
-            radius: 26,
-            child: Icon(icon, color: color, size: 26),
+            radius: 18,
+            child: Icon(icon, color: color, size: 20),
           ),
-          const SizedBox(height: AppSpacing.sm),
+          const SizedBox(height: 4),
           Text(
             title,
-            style: AppTypography.subtitle.copyWith(fontWeight: FontWeight.bold),
+            style: AppTypography.subtitle.copyWith(
+              fontWeight: FontWeight.bold,
+              fontSize: 13,
+            ),
             textAlign: TextAlign.center,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 2),
           Text(
             subtitle,
-            style: AppTypography.caption,
+            style: AppTypography.caption.copyWith(fontSize: 10),
             textAlign: TextAlign.center,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,

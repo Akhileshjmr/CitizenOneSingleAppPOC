@@ -1,509 +1,644 @@
+import 'package:citizenone_app/design_system/atoms/app_text.dart';
 import 'package:flutter/material.dart';
-import '../spacing/app_spacing.dart';
-import '../tokens/theme_context_extension.dart';
+import 'package:citizenone_app/core/theme/app_theme_extensions.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 
-/// Supported visual variants matching CitizenOne Design Tokens & Figma specs.
-enum AppButtonVariant {
-  filled,
-  outlined,
-  tonal,
-  text,
-}
+enum AppButtonVariant { primary, secondary, outline, ghost, outlined, text }
 
-/// Supported button intents (Primary Brand vs Success Action).
-enum AppButtonIntent {
-  primary,
-  success,
-}
+enum AppButtonSize { sm, md, lg, small, medium, large }
 
-/// Supported button sizes matching design specifications.
-enum AppButtonSize {
-  small,
-  defaultSize,
-  large,
-}
-
-/// Unified Atom Button Component for CitizenOne Application.
-///
-/// Supports:
-/// - Sub-types: Primary (Filled, Outlined, Tonal, Text) & Success (Filled, Outlined, Tonal, Text)
-/// - Icon Positions: Left (leadingIcon), Right (trailingIcon), or None
-/// - States: Default, Disabled (isDisabled == true || onPressed == null with 50% opacity), Loading (isLoading == true)
-/// - Theme Tokens: Context-aware resolution via context.tokens & context.colors
 class AppButton extends StatelessWidget {
-  final String label;
-  final VoidCallback? onPressed;
-  final bool isLoading;
-  final bool isDisabled;
+  final String text;
+  final String? label;
+  final VoidCallback onPressed;
   final AppButtonVariant variant;
-  final AppButtonIntent intent;
   final AppButtonSize size;
-  final IconData? leadingIcon;
-  final IconData? trailingIcon;
-  final IconData? icon; // Backward compatibility for left icon
+  final bool isLoading;
+  final IconData? icon;
+  final double? width;
+  final double? height;
+  final AppTextStyle? textStyle;
+  final Color? textColor;
   final Color? backgroundColor;
   final Color? foregroundColor;
+  final Color? borderColor;
+  final double? radius;
+  final EdgeInsetsGeometry? padding;
 
   const AppButton({
     super.key,
-    required this.label,
-    this.onPressed,
+    this.text = '',
+    this.label,
+    required this.onPressed,
+    this.variant = AppButtonVariant.primary,
+    this.size = AppButtonSize.md,
     this.isLoading = false,
-    this.isDisabled = false,
-    bool isOutlined = false,
-    AppButtonVariant? variant,
-    this.intent = AppButtonIntent.primary,
-    this.size = AppButtonSize.defaultSize,
-    this.leadingIcon,
-    this.trailingIcon,
     this.icon,
+    this.width,
+    this.height,
     this.backgroundColor,
     this.foregroundColor,
-  }) : variant = isOutlined
-            ? AppButtonVariant.outlined
-            : (variant ?? AppButtonVariant.filled);
+    this.textColor,
+    this.borderColor,
+    this.radius,
+    this.textStyle,
+    this.padding,
+  });
 
-  /// Primary Filled Button
-  const factory AppButton.filled({
+  factory AppButton.filled({
     Key? key,
     required String label,
-    VoidCallback? onPressed,
-    bool isLoading,
-    bool isDisabled,
-    AppButtonSize size,
-    IconData? leadingIcon,
-    IconData? trailingIcon,
-    Color? backgroundColor,
-    Color? foregroundColor,
-  }) = _AppFilledButton;
+    required VoidCallback onPressed,
+    AppButtonSize size = AppButtonSize.md,
+    bool isLoading = false,
+    IconData? icon,
+    double? width,
+    double? height,
+  }) => AppButton(
+    key: key,
+    label: label,
+    text: label,
+    onPressed: onPressed,
+    variant: AppButtonVariant.primary,
+    size: size,
+    isLoading: isLoading,
+    icon: icon,
+    width: width,
+    height: height,
+  );
 
-  /// Primary Outlined Button
-  const factory AppButton.outlined({
+  factory AppButton.outlined({
     Key? key,
     required String label,
-    VoidCallback? onPressed,
-    bool isLoading,
-    bool isDisabled,
-    AppButtonSize size,
-    IconData? leadingIcon,
-    IconData? trailingIcon,
-    Color? backgroundColor,
-    Color? foregroundColor,
-  }) = _AppOutlinedButton;
+    required VoidCallback onPressed,
+    AppButtonSize size = AppButtonSize.md,
+    bool isLoading = false,
+    IconData? icon,
+    double? width,
+    double? height,
+  }) => AppButton(
+    key: key,
+    label: label,
+    text: label,
+    onPressed: onPressed,
+    variant: AppButtonVariant.outline,
+    size: size,
+    isLoading: isLoading,
+    icon: icon,
+    width: width,
+    height: height,
+  );
 
-  /// Primary Tonal Button
-  const factory AppButton.tonal({
+  factory AppButton.tonal({
     Key? key,
     required String label,
-    VoidCallback? onPressed,
-    bool isLoading,
-    bool isDisabled,
-    AppButtonSize size,
-    IconData? leadingIcon,
-    IconData? trailingIcon,
-    Color? backgroundColor,
-    Color? foregroundColor,
-  }) = _AppTonalButton;
+    required VoidCallback onPressed,
+    AppButtonSize size = AppButtonSize.md,
+    bool isLoading = false,
+    IconData? icon,
+    double? width,
+    double? height,
+  }) => AppButton(
+    key: key,
+    label: label,
+    text: label,
+    onPressed: onPressed,
+    variant: AppButtonVariant.secondary,
+    size: size,
+    isLoading: isLoading,
+    icon: icon,
+    width: width,
+    height: height,
+  );
 
-  /// Primary Text Button
-  const factory AppButton.text({
+  factory AppButton.text({
     Key? key,
     required String label,
-    VoidCallback? onPressed,
-    bool isLoading,
-    bool isDisabled,
-    AppButtonSize size,
-    IconData? leadingIcon,
-    IconData? trailingIcon,
-    Color? foregroundColor,
-  }) = _AppTextButton;
+    required VoidCallback onPressed,
+    AppButtonSize size = AppButtonSize.md,
+    bool isLoading = false,
+    IconData? icon,
+    double? width,
+    double? height,
+  }) => AppButton(
+    key: key,
+    label: label,
+    text: label,
+    onPressed: onPressed,
+    variant: AppButtonVariant.ghost,
+    size: size,
+    isLoading: isLoading,
+    icon: icon,
+    width: width,
+    height: height,
+  );
 
-  /// Success Filled Button (SuccessPrimary)
-  const factory AppButton.successFilled({
+  factory AppButton.successFilled({
     Key? key,
     required String label,
-    VoidCallback? onPressed,
-    bool isLoading,
-    bool isDisabled,
-    AppButtonSize size,
-    IconData? leadingIcon,
-    IconData? trailingIcon,
-    Color? backgroundColor,
-    Color? foregroundColor,
-  }) = _AppSuccessFilledButton;
+    required VoidCallback onPressed,
+    AppButtonSize size = AppButtonSize.md,
+    bool isLoading = false,
+    IconData? icon,
+    double? width,
+    double? height,
+  }) => AppButton(
+    key: key,
+    label: label,
+    text: label,
+    onPressed: onPressed,
+    variant: AppButtonVariant.primary,
+    size: size,
+    isLoading: isLoading,
+    icon: icon,
+    width: width,
+    height: height,
+    backgroundColor: const Color(0xFF16A34A),
+    foregroundColor: Colors.white,
+  );
 
-  /// Success Outlined Button (SuccessOutlined)
-  const factory AppButton.successOutlined({
+  factory AppButton.successOutlined({
     Key? key,
     required String label,
-    VoidCallback? onPressed,
-    bool isLoading,
-    bool isDisabled,
-    AppButtonSize size,
-    IconData? leadingIcon,
-    IconData? trailingIcon,
-    Color? backgroundColor,
-    Color? foregroundColor,
-  }) = _AppSuccessOutlinedButton;
+    required VoidCallback onPressed,
+    AppButtonSize size = AppButtonSize.md,
+    bool isLoading = false,
+    IconData? icon,
+    double? width,
+    double? height,
+  }) => AppButton(
+    key: key,
+    label: label,
+    text: label,
+    onPressed: onPressed,
+    variant: AppButtonVariant.outline,
+    size: size,
+    isLoading: isLoading,
+    icon: icon,
+    width: width,
+    height: height,
+    foregroundColor: const Color(0xFF16A34A),
+    borderColor: const Color(0xFF16A34A),
+  );
 
-  /// Success Tonal Button (SuccessTonal)
-  const factory AppButton.successTonal({
+  factory AppButton.successTonal({
     Key? key,
     required String label,
-    VoidCallback? onPressed,
-    bool isLoading,
-    bool isDisabled,
-    AppButtonSize size,
-    IconData? leadingIcon,
-    IconData? trailingIcon,
-    Color? backgroundColor,
-    Color? foregroundColor,
-  }) = _AppSuccessTonalButton;
+    required VoidCallback onPressed,
+    AppButtonSize size = AppButtonSize.md,
+    bool isLoading = false,
+    IconData? icon,
+    double? width,
+    double? height,
+  }) => AppButton(
+    key: key,
+    label: label,
+    text: label,
+    onPressed: onPressed,
+    variant: AppButtonVariant.secondary,
+    size: size,
+    isLoading: isLoading,
+    icon: icon,
+    width: width,
+    height: height,
+    backgroundColor: const Color(0xFFDCFCE7),
+    foregroundColor: const Color(0xFF15803D),
+  );
 
-  /// Success Text Button (SuccessText)
-  const factory AppButton.successText({
+  factory AppButton.successText({
     Key? key,
     required String label,
-    VoidCallback? onPressed,
-    bool isLoading,
-    bool isDisabled,
-    AppButtonSize size,
-    IconData? leadingIcon,
-    IconData? trailingIcon,
-    Color? foregroundColor,
-  }) = _AppSuccessTextButton;
+    required VoidCallback onPressed,
+    AppButtonSize size = AppButtonSize.md,
+    bool isLoading = false,
+    IconData? icon,
+    double? width,
+    double? height,
+  }) => AppButton(
+    key: key,
+    label: label,
+    text: label,
+    onPressed: onPressed,
+    variant: AppButtonVariant.ghost,
+    size: size,
+    isLoading: isLoading,
+    icon: icon,
+    width: width,
+    height: height,
+    foregroundColor: const Color(0xFF16A34A),
+  );
 
-  EdgeInsets _getPadding() {
-    switch (size) {
-      case AppButtonSize.small:
-        return const EdgeInsets.symmetric(
-          horizontal: AppSpacing.md,
-          vertical: AppSpacing.sm,
-        );
-      case AppButtonSize.large:
-        return const EdgeInsets.symmetric(
-          horizontal: AppSpacing.xl,
-          vertical: AppSpacing.lg,
-        );
-      case AppButtonSize.defaultSize:
-        return const EdgeInsets.symmetric(
-          horizontal: AppSpacing.lg,
-          vertical: AppSpacing.md,
-        );
-    }
-  }
-
-  double _getFontSize() {
-    switch (size) {
-      case AppButtonSize.small:
-        return 13.0;
-      case AppButtonSize.large:
-        return 17.0;
-      case AppButtonSize.defaultSize:
-        return 15.0;
-    }
-  }
-
-  double _getIconSize() {
-    switch (size) {
-      case AppButtonSize.small:
-        return 16.0;
-      case AppButtonSize.large:
-        return 22.0;
-      case AppButtonSize.defaultSize:
-        return 18.0;
-    }
-  }
-
-  Color _getIntentBaseColor(BuildContext context) {
-    if (backgroundColor != null) return backgroundColor!;
-    switch (intent) {
-      case AppButtonIntent.success:
-        return context.tokens.statusSuccess;
-      case AppButtonIntent.primary:
-        return context.tokens.brandPrimary;
-    }
-  }
+  String get displayText => label ?? text;
 
   @override
   Widget build(BuildContext context) {
-    final effectiveLeadingIcon = leadingIcon ?? icon;
-    final baseColor = _getIntentBaseColor(context);
-    final effectiveDisabled = isDisabled || onPressed == null;
-    final effectiveOnPressed = (isLoading || effectiveDisabled) ? null : onPressed;
+    final tokens = context.appTokens;
 
-    final shape = RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(AppSpacing.borderRadiusLg),
+    final buttonHeight = height ?? _heightFor(size);
+    final radius = this.radius ?? 8;
+    final fgColor = foregroundColor ?? _fgColorFor(tokens);
+    final bgColor = backgroundColor ?? tokens.primary;
+    final borderColor = this.borderColor ?? tokens.primary;
+
+    return SizedBox(
+      width: width ?? double.infinity,
+      height: buttonHeight,
+      child: _buildButton(
+        context,
+        tokens,
+        radius,
+        fgColor,
+        bgColor,
+        borderColor,
+      ),
     );
+  }
 
+  Widget _buildButton(
+    BuildContext context,
+    AppThemeTokens tokens,
+    double radius,
+    Color fgColor,
+    Color bgColor,
+    Color borderColor,
+  ) {
     switch (variant) {
+      case AppButtonVariant.primary:
+        return _PrimaryButton(
+          text: displayText,
+          onPressed: onPressed,
+          isLoading: isLoading,
+          icon: icon,
+          padding: padding,
+          radius: radius,
+          fgColor: fgColor,
+          textColor: textColor,
+          bgColor: bgColor,
+          tokens: tokens,
+          size: size,
+          textStyle: textStyle,
+        );
+      case AppButtonVariant.secondary:
+        return _SecondaryButton(
+          text: displayText,
+          onPressed: onPressed,
+          isLoading: isLoading,
+          icon: icon,
+          padding: padding,
+          radius: radius,
+          fgColor: fgColor,
+          textColor: textColor,
+          bgColor: bgColor,
+          tokens: tokens,
+          size: size,
+          textStyle: textStyle,
+        );
+      case AppButtonVariant.outline:
       case AppButtonVariant.outlined:
-        final strokeColor = foregroundColor ?? baseColor;
-        final strokeColor50 = strokeColor.withValues(alpha: 0.5);
-
-        return OutlinedButton(
-          onPressed: effectiveOnPressed,
-          style: OutlinedButton.styleFrom(
-            foregroundColor: strokeColor,
-            disabledForegroundColor: strokeColor50,
-            side: BorderSide(
-              color: effectiveDisabled ? strokeColor50 : strokeColor,
-              width: 2,
-            ),
-            padding: _getPadding(),
-            shape: shape,
-            textStyle: TextStyle(
-              fontSize: _getFontSize(),
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          child: _buildContent(
-            context,
-            effectiveDisabled ? strokeColor50 : strokeColor,
-            effectiveLeadingIcon,
-          ),
+        return _OutlineButton(
+          text: displayText,
+          onPressed: onPressed,
+          isLoading: isLoading,
+          icon: icon,
+          padding: padding,
+          radius: radius,
+          fgColor: fgColor,
+          textColor: textColor,
+          borderColor: borderColor,
+          size: size,
+          textStyle: textStyle,
         );
-
-      case AppButtonVariant.tonal:
-        final tonalBg = backgroundColor ?? baseColor.withValues(alpha: 0.15);
-        final tonalFg = foregroundColor ?? baseColor;
-        final tonalBg50 = tonalBg.withValues(alpha: 0.5);
-        final tonalFg50 = tonalFg.withValues(alpha: 0.5);
-
-        return FilledButton.tonal(
-          onPressed: effectiveOnPressed,
-          style: FilledButton.styleFrom(
-            backgroundColor: tonalBg,
-            foregroundColor: tonalFg,
-            disabledBackgroundColor: tonalBg50,
-            disabledForegroundColor: tonalFg50,
-            padding: _getPadding(),
-            shape: shape,
-            textStyle: TextStyle(
-              fontSize: _getFontSize(),
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          child: _buildContent(
-            context,
-            effectiveDisabled ? tonalFg50 : tonalFg,
-            effectiveLeadingIcon,
-          ),
-        );
-
+      case AppButtonVariant.ghost:
       case AppButtonVariant.text:
-        final textFg = foregroundColor ?? baseColor;
-        final textFg50 = textFg.withValues(alpha: 0.5);
-
-        return TextButton(
-          onPressed: effectiveOnPressed,
-          style: TextButton.styleFrom(
-            foregroundColor: textFg,
-            disabledForegroundColor: textFg50,
-            padding: _getPadding(),
-            shape: shape,
-            textStyle: TextStyle(
-              fontSize: _getFontSize(),
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          child: _buildContent(
-            context,
-            effectiveDisabled ? textFg50 : textFg,
-            effectiveLeadingIcon,
-          ),
-        );
-
-      case AppButtonVariant.filled:
-        final filledFg = foregroundColor ?? Colors.white;
-        final baseColor50 = baseColor.withValues(alpha: 0.5);
-        final filledFg50 = filledFg.withValues(alpha: 0.5);
-
-        return ElevatedButton(
-          onPressed: effectiveOnPressed,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: baseColor,
-            foregroundColor: filledFg,
-            disabledBackgroundColor: baseColor50,
-            disabledForegroundColor: filledFg50,
-            elevation: 0,
-            padding: _getPadding(),
-            shape: shape,
-            textStyle: TextStyle(
-              fontSize: _getFontSize(),
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          child: _buildContent(
-            context,
-            effectiveDisabled ? filledFg50 : filledFg,
-            effectiveLeadingIcon,
-          ),
+        return _GhostButton(
+          text: displayText,
+          onPressed: onPressed,
+          isLoading: isLoading,
+          icon: icon,
+          padding: padding,
+          fgColor: fgColor,
+          textColor: textColor,
+          size: size,
+          textStyle: textStyle,
         );
     }
   }
 
-  Widget _buildContent(
-    BuildContext context,
-    Color contentColor,
-    IconData? leftIcon,
-  ) {
-    if (isLoading) {
-      return SizedBox(
-        height: _getIconSize(),
-        width: _getIconSize(),
-        child: CircularProgressIndicator(
-          strokeWidth: 2.5,
-          valueColor: AlwaysStoppedAnimation<Color>(contentColor),
-        ),
-      );
-    }
+  double _heightFor(AppButtonSize s) => switch (s) {
+    AppButtonSize.sm || AppButtonSize.small => 40,
+    AppButtonSize.md || AppButtonSize.medium => 52,
+    AppButtonSize.lg || AppButtonSize.large => 60,
+  };
 
-    final children = <Widget>[];
+  Color _fgColorFor(AppThemeTokens tokens) => foregroundColor ?? Colors.white;
+}
 
-    if (leftIcon != null) {
-      children.add(Icon(leftIcon, size: _getIconSize(), color: contentColor));
-      children.add(const SizedBox(width: AppSpacing.sm));
-    }
+// ── Private variant widgets ──────────────────────────────────────────────────
 
-    children.add(
-      Text(
-        label,
-        style: TextStyle(
-          fontSize: _getFontSize(),
-          fontWeight: FontWeight.w600,
-          color: contentColor,
+class _PrimaryButton extends StatelessWidget {
+  final String text;
+  final VoidCallback onPressed;
+  final bool isLoading;
+  final IconData? icon;
+  final EdgeInsetsGeometry? padding;
+  final double radius;
+  final Color fgColor;
+  final Color? textColor;
+  final Color bgColor;
+  final AppThemeTokens tokens;
+  final AppButtonSize size;
+  final AppTextStyle? textStyle;
+
+  const _PrimaryButton({
+    required this.text,
+    required this.onPressed,
+    required this.isLoading,
+    required this.icon,
+    required this.padding,
+    required this.radius,
+    required this.fgColor,
+    required this.textColor,
+    required this.bgColor,
+    required this.tokens,
+    required this.size,
+    required this.textStyle,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(radius),
+        color: bgColor,
+        boxShadow: [
+          BoxShadow(
+            color: (bgColor).withValues(alpha: 0.28),
+            blurRadius: 14,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: _Ink(
+        radius: radius,
+        onPressed: isLoading ? null : onPressed,
+        child: _Content(
+          text: text,
+          icon: icon,
+          fgColor: fgColor,
+          textColor: textColor,
+          isLoading: isLoading,
+          size: size,
+          padding: padding,
+          textStyle: textStyle,
         ),
       ),
     );
+  }
+}
 
-    if (trailingIcon != null) {
-      children.add(const SizedBox(width: AppSpacing.sm));
-      children.add(Icon(trailingIcon, size: _getIconSize(), color: contentColor));
-    }
+class _SecondaryButton extends StatelessWidget {
+  final String text;
+  final VoidCallback onPressed;
+  final bool isLoading;
+  final IconData? icon;
+  final EdgeInsetsGeometry? padding;
+  final double radius;
+  final Color fgColor;
+  final Color? textColor;
+  final Color bgColor;
+  final AppThemeTokens tokens;
+  final AppButtonSize size;
+  final AppTextStyle? textStyle;
 
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: children,
+  const _SecondaryButton({
+    required this.text,
+    required this.onPressed,
+    required this.isLoading,
+    required this.icon,
+    required this.padding,
+    required this.radius,
+    required this.fgColor,
+    required this.textColor,
+    required this.bgColor,
+    required this.tokens,
+    required this.size,
+    required this.textStyle,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(radius),
+        color: bgColor,
+        boxShadow: [
+          BoxShadow(
+            color: bgColor.withValues(alpha: 0.22),
+            blurRadius: 10,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: _Ink(
+        radius: radius,
+        onPressed: isLoading ? null : onPressed,
+        child: _Content(
+          text: text,
+          icon: icon,
+          fgColor: fgColor,
+          textColor: textColor,
+          isLoading: isLoading,
+          size: size,
+          padding: padding,
+          textStyle: textStyle,
+        ),
+      ),
     );
   }
 }
 
-class _AppFilledButton extends AppButton {
-  const _AppFilledButton({
-    super.key,
-    required super.label,
-    super.onPressed,
-    super.isLoading,
-    super.isDisabled,
-    super.size,
-    super.leadingIcon,
-    super.trailingIcon,
-    super.backgroundColor,
-    super.foregroundColor,
-  }) : super(variant: AppButtonVariant.filled, intent: AppButtonIntent.primary);
+class _OutlineButton extends StatelessWidget {
+  final String text;
+  final VoidCallback onPressed;
+  final bool isLoading;
+  final IconData? icon;
+  final EdgeInsetsGeometry? padding;
+  final double radius;
+  final Color fgColor;
+  final Color? textColor;
+  final Color borderColor;
+  final AppButtonSize size;
+  final AppTextStyle? textStyle;
+
+  const _OutlineButton({
+    required this.text,
+    required this.onPressed,
+    required this.isLoading,
+    required this.icon,
+    required this.padding,
+    required this.radius,
+    required this.fgColor,
+    this.textColor,
+    required this.borderColor,
+    required this.size,
+    required this.textStyle,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(radius),
+        color: Colors.transparent,
+        border: Border.all(color: borderColor, width: 1.5),
+      ),
+      child: _Ink(
+        radius: radius,
+        onPressed: isLoading ? null : onPressed,
+        child: _Content(
+          text: text,
+          icon: icon,
+          fgColor: fgColor,
+          textColor: textColor,
+          isLoading: isLoading,
+          size: size,
+          padding: padding,
+          textStyle: textStyle,
+        ),
+      ),
+    );
+  }
 }
 
-class _AppOutlinedButton extends AppButton {
-  const _AppOutlinedButton({
-    super.key,
-    required super.label,
-    super.onPressed,
-    super.isLoading,
-    super.isDisabled,
-    super.size,
-    super.leadingIcon,
-    super.trailingIcon,
-    super.backgroundColor,
-    super.foregroundColor,
-  }) : super(variant: AppButtonVariant.outlined, intent: AppButtonIntent.primary);
+class _GhostButton extends StatelessWidget {
+  final String text;
+  final VoidCallback onPressed;
+  final bool isLoading;
+  final IconData? icon;
+  final EdgeInsetsGeometry? padding;
+  final Color fgColor;
+  final Color? textColor;
+  final AppButtonSize size;
+  final AppTextStyle? textStyle;
+
+  const _GhostButton({
+    required this.text,
+    required this.onPressed,
+    required this.isLoading,
+    required this.icon,
+    required this.padding,
+    required this.fgColor,
+    this.textColor,
+    required this.size,
+    required this.textStyle,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return _Ink(
+      radius: 8,
+      onPressed: isLoading ? null : onPressed,
+      child: _Content(
+        text: text,
+        icon: icon,
+        fgColor: fgColor,
+        textColor: textColor,
+        isLoading: isLoading,
+        size: size,
+        padding: padding,
+        textStyle: textStyle,
+      ),
+    );
+  }
 }
 
-class _AppTonalButton extends AppButton {
-  const _AppTonalButton({
-    super.key,
-    required super.label,
-    super.onPressed,
-    super.isLoading,
-    super.isDisabled,
-    super.size,
-    super.leadingIcon,
-    super.trailingIcon,
-    super.backgroundColor,
-    super.foregroundColor,
-  }) : super(variant: AppButtonVariant.tonal, intent: AppButtonIntent.primary);
+class _Ink extends StatelessWidget {
+  final Widget child;
+  final double radius;
+  final VoidCallback? onPressed;
+
+  const _Ink({required this.child, required this.radius, this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onPressed,
+        borderRadius: BorderRadius.circular(radius),
+        child: child,
+      ),
+    );
+  }
 }
 
-class _AppTextButton extends AppButton {
-  const _AppTextButton({
-    super.key,
-    required super.label,
-    super.onPressed,
-    super.isLoading,
-    super.isDisabled,
-    super.size,
-    super.leadingIcon,
-    super.trailingIcon,
-    super.foregroundColor,
-  }) : super(variant: AppButtonVariant.text, intent: AppButtonIntent.primary);
-}
+class _Content extends StatelessWidget {
+  final String text;
+  final IconData? icon;
+  final AppTextStyle? textStyle;
+  final Color fgColor;
+  final Color? textColor;
+  final bool isLoading;
+  final AppButtonSize size;
+  final EdgeInsetsGeometry? padding;
 
-class _AppSuccessFilledButton extends AppButton {
-  const _AppSuccessFilledButton({
-    super.key,
-    required super.label,
-    super.onPressed,
-    super.isLoading,
-    super.isDisabled,
-    super.size,
-    super.leadingIcon,
-    super.trailingIcon,
-    super.backgroundColor,
-    super.foregroundColor,
-  }) : super(variant: AppButtonVariant.filled, intent: AppButtonIntent.success);
-}
+  const _Content({
+    required this.text,
+    required this.icon,
+    required this.fgColor,
+    this.textColor,
+    required this.isLoading,
+    required this.size,
+    required this.padding,
+    this.textStyle,
+  });
 
-class _AppSuccessOutlinedButton extends AppButton {
-  const _AppSuccessOutlinedButton({
-    super.key,
-    required super.label,
-    super.onPressed,
-    super.isLoading,
-    super.isDisabled,
-    super.size,
-    super.leadingIcon,
-    super.trailingIcon,
-    super.backgroundColor,
-    super.foregroundColor,
-  }) : super(variant: AppButtonVariant.outlined, intent: AppButtonIntent.success);
-}
+  bool get isLeftIcon => icon == LucideIcons.log_out || icon == LucideIcons.x;
 
-class _AppSuccessTonalButton extends AppButton {
-  const _AppSuccessTonalButton({
-    super.key,
-    required super.label,
-    super.onPressed,
-    super.isLoading,
-    super.isDisabled,
-    super.size,
-    super.leadingIcon,
-    super.trailingIcon,
-    super.backgroundColor,
-    super.foregroundColor,
-  }) : super(variant: AppButtonVariant.tonal, intent: AppButtonIntent.success);
-}
+  double get _fontSize => switch (size) {
+    AppButtonSize.sm || AppButtonSize.small => 13,
+    AppButtonSize.md || AppButtonSize.medium => 15,
+    AppButtonSize.lg || AppButtonSize.large => 17,
+  };
 
-class _AppSuccessTextButton extends AppButton {
-  const _AppSuccessTextButton({
-    super.key,
-    required super.label,
-    super.onPressed,
-    super.isLoading,
-    super.isDisabled,
-    super.size,
-    super.leadingIcon,
-    super.trailingIcon,
-    super.foregroundColor,
-  }) : super(variant: AppButtonVariant.text, intent: AppButtonIntent.success);
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: padding ?? EdgeInsets.zero,
+      child: Center(
+        child: isLoading
+            ? SizedBox(
+                width: 22,
+                height: 22,
+                child: CircularProgressIndicator(
+                  color: fgColor,
+                  strokeWidth: 2,
+                ),
+              )
+            : Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Icon on Left
+                  if (icon != null && isLeftIcon) ...[
+                    Icon(icon, color: fgColor, size: _fontSize + 4),
+                    const SizedBox(width: 5),
+                  ],
+
+                  AppText(
+                    text,
+                    style: textStyle ?? AppTextStyle.bodySmall,
+                    color: textColor ?? fgColor,
+                  ),
+
+                  // Icon on Right
+                  if (icon != null && !isLeftIcon) ...[
+                    const SizedBox(width: 5),
+                    Icon(icon, color: fgColor, size: _fontSize + 2),
+                  ],
+                ],
+              ),
+      ),
+    );
+  }
 }

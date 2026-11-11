@@ -1,35 +1,36 @@
 class ApiException implements Exception {
   final String message;
   final int? statusCode;
-  final dynamic originalError;
+  final String? responseBody;
 
-  const ApiException(
-    this.message, {
-    this.statusCode,
-    this.originalError,
-  });
+  ApiException(this.message, {this.statusCode, this.responseBody});
 
   @override
   String toString() =>
-      'ApiException(statusCode: $statusCode, message: $message)';
+      'ApiException(statusCode: $statusCode, message: $message, response: $responseBody)';
 }
 
 class NetworkException extends ApiException {
-  const NetworkException(super.message,
-      {super.statusCode, super.originalError});
+  final Object? originalError;
+  NetworkException(super.message, {this.originalError});
+}
+
+class BadRequestException extends ApiException {
+  BadRequestException(super.message, {super.statusCode, super.responseBody});
 }
 
 class UnauthorizedException extends ApiException {
-  const UnauthorizedException(super.message,
-      {super.statusCode = 401, super.originalError});
+  UnauthorizedException(super.message, {super.statusCode, super.responseBody});
+}
+
+class ForbiddenException extends ApiException {
+  ForbiddenException(super.message, {super.statusCode, super.responseBody});
 }
 
 class NotFoundException extends ApiException {
-  const NotFoundException(super.message,
-      {super.statusCode = 404, super.originalError});
+  NotFoundException(super.message, {super.statusCode, super.responseBody});
 }
 
 class ServerException extends ApiException {
-  const ServerException(super.message,
-      {super.statusCode = 500, super.originalError});
+  ServerException(super.message, {super.statusCode, super.responseBody});
 }

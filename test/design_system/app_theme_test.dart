@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:citizenone_app/design_system/design_system.dart';
 
@@ -15,9 +14,9 @@ void main() {
       final kycTheme = AppTheme.getThemeForModule('kyc');
       final loansTheme = AppTheme.getThemeForModule('loans');
 
-      expect(agencyTheme.colorScheme.primary, equals(const Color(0xFF0F766E)));
-      expect(kycTheme.colorScheme.primary, equals(const Color(0xFF6B21A8)));
-      expect(loansTheme.colorScheme.primary, equals(const Color(0xFF1E40AF)));
+      expect(agencyTheme.colorScheme.primary, equals(AppPalette.primary));
+      expect(kycTheme.colorScheme.primary, equals(AppPalette.primary));
+      expect(loansTheme.colorScheme.primary, equals(AppPalette.primary));
     });
 
     test('When useCentralTheme flag is true, all modules return Central Theme', () {

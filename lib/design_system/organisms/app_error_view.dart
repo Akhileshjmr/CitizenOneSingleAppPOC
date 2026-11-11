@@ -48,7 +48,7 @@ class AppErrorView extends StatelessWidget {
               AppButton(
                 label: 'Retry',
                 icon: Icons.refresh,
-                onPressed: onRetry,
+                onPressed: onRetry!,
               ),
             ],
           ],

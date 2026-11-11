@@ -8,20 +8,23 @@ import '../domain/usecases/submit_cash_deposit.dart';
 import '../presentation/cubit/cash_deposit_cubit.dart';
 import '../presentation/screens/cash_deposit_screen.dart';
 
-final List<RouteBase> cashDepositRoutes = [
-  GoRoute(
-    path: '/agency-banking/cash-deposit',
-    builder: (context, state) {
-      final apiClient = ApiClient();
-      final api = CashDepositApi(apiClient);
-      final dataSource = CashDepositRemoteDataSourceImpl(api);
-      final repository = CashDepositRepositoryImpl(dataSource);
-      final useCase = SubmitCashDepositUseCase(repository);
+List<RouteBase> getCashDepositRoutes([ApiClient? client]) => [
+      GoRoute(
+        path: '/agency-banking/cash-deposit',
+        builder: (context, state) {
+          final apiClient = client ?? ApiClient();
+          final api = CashDepositApi(apiClient);
+          final dataSource = CashDepositRemoteDataSourceImpl(api);
+          final repository = CashDepositRepositoryImpl(dataSource);
+          final useCase = SubmitCashDepositUseCase(repository);
 
-      return BlocProvider(
-        create: (_) => CashDepositCubit(useCase),
-        child: const CashDepositScreen(),
-      );
-    },
-  ),
-];
+          return BlocProvider(
+            create: (_) => CashDepositCubit(useCase),
+            child: const CashDepositScreen(),
+          );
+        },
+      ),
+    ];
+
+@Deprecated('Use getCashDepositRoutes(apiClient) instead')
+final List<RouteBase> cashDepositRoutes = getCashDepositRoutes();

@@ -15,8 +15,10 @@ class LoanCubit extends Cubit<LoanState> {
     try {
       final result =
           await applyUseCase(amount: amount, tenureMonths: tenureMonths);
+      if (isClosed) return;
       emit(LoanSuccess(result));
     } catch (e) {
+      if (isClosed) return;
       emit(LoanFailure(e.toString()));
     }
   }

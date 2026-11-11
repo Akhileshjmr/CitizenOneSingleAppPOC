@@ -1,49 +1,56 @@
-import 'dart:async';
+import 'package:http/http.dart' as http;
+import '../logging/app_logger.dart';
+import '../logging/logging_policy.dart';
 
 abstract class NetworkInterceptor {
-  FutureOr<Map<String, String>> onRequest(
+  Future<Map<String, String>> onRequest(
     String path,
     Map<String, String> headers,
   );
-
-  FutureOr<void> onResponse(
-    String path,
-    int statusCode,
-    dynamic body,
-  );
-
-  FutureOr<void> onError(
-    String path,
-    Object error,
-  );
+  Future<http.Response> onResponse(String path, http.Response response);
+  Future<void> onError(String path, Object error);
 }
 
 class DefaultNetworkInterceptor implements NetworkInterceptor {
-  final String? Function()? getAuthToken;
+  final bool enableLogging;
 
-  DefaultNetworkInterceptor({this.getAuthToken});
+  DefaultNetworkInterceptor({this.enableLogging = true});
 
   @override
-  FutureOr<Map<String, String>> onRequest(
+  Future<Map<String, String>> onRequest(
     String path,
     Map<String, String> headers,
-  ) {
-    final updatedHeaders = Map<String, String>.from(headers);
-    updatedHeaders['Content-Type'] = 'application/json';
-
-    if (getAuthToken != null) {
-      final token = getAuthToken!();
-      if (token != null && token.isNotEmpty) {
-        updatedHeaders['Authorization'] = 'Bearer $token';
-      }
+  ) async {
+    final reqHeaders = Map<String, String>.from(headers);
+    if (!reqHeaders.containsKey('Content-Type')) {
+      reqHeaders['Content-Type'] = 'application/json';
     }
 
-    return updatedHeaders;
+    if (enableLogging) {
+      final sanitizedHeaders = LoggingPolicy.redactHeaders(reqHeaders);
+      AppLogger.info(
+        '[HTTP-REQ] OUTGOING $path | Headers: $sanitizedHeaders',
+      );
+    }
+    return reqHeaders;
   }
 
   @override
-  FutureOr<void> onResponse(String path, int statusCode, body) {}
+  Future<http.Response> onResponse(String path, http.Response response) async {
+    if (enableLogging) {
+      AppLogger.info(
+        '[HTTP-RES] SUCCESS $path | Status: ${response.statusCode}',
+      );
+    }
+    return response;
+  }
 
   @override
-  FutureOr<void> onError(String path, Object error) {}
+  Future<void> onError(String path, Object error) async {
+    if (enableLogging) {
+      AppLogger.error(
+        '[HTTP-ERR] ERROR on $path: $error',
+      );
+    }
+  }
 }

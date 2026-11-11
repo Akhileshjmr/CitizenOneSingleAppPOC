@@ -17,8 +17,10 @@ class InsuranceCubit extends Cubit<InsuranceState> {
         policyName: policyName,
         premiumAmount: premiumAmount,
       );
+      if (isClosed) return;
       emit(InsuranceSuccess(policy));
     } catch (e) {
+      if (isClosed) return;
       emit(InsuranceFailure(e.toString()));
     }
   }

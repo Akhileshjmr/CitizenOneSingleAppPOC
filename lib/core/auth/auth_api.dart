@@ -1,3 +1,4 @@
+import '../logging/app_logger.dart';
 import '../network/api_client.dart';
 import 'user_model.dart';
 
@@ -17,8 +18,17 @@ class AuthApi {
         'password': password,
       });
       return UserModel.fromJson(response);
-    } catch (_) {
-      await Future.delayed(const Duration(milliseconds: 600));
+    } catch (e) {
+      // In production, strictly fail closed - do not return fake credentials
+      if (apiClient.env?.isProduction ?? false) {
+        rethrow;
+      }
+
+      AppLogger.info(
+        'Demo Mode: Simulating successful authentication for "$username"',
+        'AuthApi',
+      );
+      await Future.delayed(const Duration(milliseconds: 400));
       return UserModel(
         userId: 'USR-99201',
         username: username,
@@ -33,8 +43,15 @@ class AuthApi {
     const endpoint = '/api/v1/auth/forgot-password';
     try {
       await apiClient.post(endpoint, body: {'identifier': emailOrUsername});
-    } catch (_) {
-      await Future.delayed(const Duration(milliseconds: 400));
+    } catch (e) {
+      if (apiClient.env?.isProduction ?? false) {
+        rethrow;
+      }
+      AppLogger.info(
+        'Demo Mode: Simulating password reset request',
+        'AuthApi',
+      );
+      await Future.delayed(const Duration(milliseconds: 300));
     }
   }
 
@@ -43,8 +60,15 @@ class AuthApi {
     try {
       final response = await apiClient.post(endpoint, body: {'email': email});
       return response['maskedUsername'] as String? ?? 'c***1';
-    } catch (_) {
-      await Future.delayed(const Duration(milliseconds: 400));
+    } catch (e) {
+      if (apiClient.env?.isProduction ?? false) {
+        rethrow;
+      }
+      AppLogger.info(
+        'Demo Mode: Simulating username recovery',
+        'AuthApi',
+      );
+      await Future.delayed(const Duration(milliseconds: 300));
       return 'cit***_user';
     }
   }

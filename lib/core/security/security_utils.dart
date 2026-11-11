@@ -9,20 +9,26 @@ class SecurityUtils {
     return utf8.decode(base64.decode(encoded));
   }
 
-  static String maskAccountNumber(String accountNumber) {
-    if (accountNumber.length <= 4) return accountNumber;
-    final visiblePart = accountNumber.substring(accountNumber.length - 4);
-    final maskedPart = '*' * (accountNumber.length - 4);
-    return '$maskedPart$visiblePart';
+  static String maskPhone(String phone) {
+    if (phone.length <= 4) return phone;
+    final visible = phone.substring(phone.length - 4);
+    return '*' * (phone.length - 4) + visible;
   }
 
   static String maskEmail(String email) {
     final parts = email.split('@');
     if (parts.length != 2) return email;
-    final username = parts[0];
+    final name = parts[0];
     final domain = parts[1];
-    if (username.length <= 2) return '$username***@$domain';
-    return '${username[0]}***${username[username.length - 1]}@$domain';
+    if (name.length <= 2) return '$name***@$domain';
+    return '${name.substring(0, 2)}***@$domain';
+  }
+
+  static String maskAccountNumber(String accountNumber) {
+    if (accountNumber.length <= 4) return accountNumber;
+    final visiblePart = accountNumber.substring(accountNumber.length - 4);
+    final maskedPart = '*' * (accountNumber.length - 4);
+    return '$maskedPart$visiblePart';
   }
 
   static String generateNonce() {

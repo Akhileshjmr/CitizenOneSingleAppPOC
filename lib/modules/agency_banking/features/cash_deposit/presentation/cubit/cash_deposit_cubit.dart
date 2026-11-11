@@ -20,8 +20,10 @@ class CashDepositCubit extends Cubit<CashDepositState> {
         amount: amount,
         depositorName: depositorName,
       );
+      if (isClosed) return;
       emit(CashDepositSuccess(result));
     } catch (e) {
+      if (isClosed) return;
       emit(CashDepositFailure(e.toString().replaceAll('Exception: ', '')));
     }
   }

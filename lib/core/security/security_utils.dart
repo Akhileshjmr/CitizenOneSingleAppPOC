@@ -1,6 +1,19 @@
 import 'dart:convert';
+import 'package:crypto/crypto.dart';
 
 class SecurityUtils {
+  static String sha256Hash(String input) {
+    final bytes = utf8.encode(input);
+    final digest = sha256.convert(bytes);
+    return digest.toString();
+  }
+
+  static String hmacSha256(String key, String input) {
+    final hmac = Hmac(sha256, utf8.encode(key));
+    final digest = hmac.convert(utf8.encode(input));
+    return base64Url.encode(digest.bytes).replaceAll('=', '');
+  }
+
   static String encodeBase64(String input) {
     return base64.encode(utf8.encode(input));
   }

@@ -6,6 +6,7 @@ abstract class AuthRepository {
   Future<UserModel> login({
     required String username,
     required String password,
+    String? role,
   });
 
   Future<void> requestPasswordReset(String emailOrUsername);
@@ -13,7 +14,7 @@ abstract class AuthRepository {
   Future<String> requestRecoverUsername(String email);
 
   /// Exchanges root authentication credentials for a short-lived token scoped to a specific module.
-  Future<ScopedToken> getScopedToken(String targetModule);
+  Future<ScopedToken> getScopedToken(String targetModule, {String? userToken});
 }
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -25,8 +26,9 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<UserModel> login({
     required String username,
     required String password,
+    String? role,
   }) {
-    return api.login(username: username, password: password);
+    return api.login(username: username, password: password, role: role);
   }
 
   @override
@@ -40,13 +42,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<ScopedToken> getScopedToken(String targetModule) async {
-    final now = DateTime.now();
-    return ScopedToken(
-      token: 'scoped-jwt-$targetModule-${now.millisecondsSinceEpoch}',
-      targetModule: targetModule,
-      issuedAt: now,
-      expiresAt: now.add(const Duration(minutes: 15)),
-    );
+  Future<ScopedToken> getScopedToken(String targetModule, {String? userToken}) {
+    return api.requestScopedToken(targetModule, userToken: userToken);
   }
 }

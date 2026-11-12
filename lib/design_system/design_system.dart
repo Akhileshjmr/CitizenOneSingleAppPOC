@@ -59,6 +59,7 @@ export 'models/service_list_data.dart';
 // ── Templates ─────────────────────────────────────────────────────────────────
 export 'templates/app_page_scaffold.dart';
 export 'templates/service_page_template.dart';
+export 'templates/unauthorized_access_view.dart';
 
 // ── Shared Architecture Foundations ─────────────────────────────────────────
 export 'tokens/app_palette.dart';

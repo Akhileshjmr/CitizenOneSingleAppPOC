@@ -7,7 +7,6 @@ import 'package:citizenone_app/core/theme/tokens/assets.dart';
 import 'package:citizenone_app/core/theme/tokens/colors.dart';
 import 'package:citizenone_app/design_system/design_system.dart';
 import '../../../domain/entities/user_role.dart';
-import '../../../presentation/state/agent_banking_credential_holder.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -40,15 +39,10 @@ class _LoginScreenState extends State<LoginScreen> {
     final phone = _mobileController.text.trim();
     final password = _passwordController.text;
 
-    // Save credentials in memory for silent Agency Banking authentication
-    AgentBankingCredentialHolder.instance.set(
-      mobileNumber: phone,
-      password: password,
-    );
-
     context.read<AuthCubit>().login(
           username: phone,
           password: password,
+          role: _selectedRole.name.toUpperCase(),
         );
   }
 

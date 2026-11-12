@@ -30,7 +30,6 @@ import 'package:citizenone_app/features/auth/domain/repositories/auth_repository
 import 'package:citizenone_app/features/auth/domain/usecases/change_password_usecase.dart';
 import 'package:citizenone_app/features/auth/domain/usecases/login_usecase.dart';
 import 'package:citizenone_app/features/auth/domain/usecases/logout_usecase.dart';
-import 'package:citizenone_app/features/auth/presentation/state/agent_banking_credential_holder.dart';
 import 'package:citizenone_app/features/auth/presentation/state/auth_cubit.dart';
 import 'package:citizenone_app/features/auth/presentation/state/forgot_password_cubit.dart';
 import 'package:citizenone_app/modules/agency_banking/module/module_entry.dart';
@@ -251,9 +250,6 @@ Future<void> setupDI({AppEnv env = AppEnv.dev}) async {
   // again inside the root `MultiBlocProvider` — and both call sites must
   // see the same instance, or the bootstrapped session is silently
   // discarded. Mirrors the existing `LocaleCubit` precedent below.
-  sl.registerLazySingleton<AgentBankingCredentialHolder>(
-    () => AgentBankingCredentialHolder(),
-  );
   sl.registerLazySingleton(
     () => AuthCubit(
       loginUseCase: sl(),
@@ -261,7 +257,6 @@ Future<void> setupDI({AppEnv env = AppEnv.dev}) async {
       repository: sl<AuthRepository>(),
       onSessionCleared: () {
         sl<SessionCubit>().endSession();
-        sl<AgentBankingCredentialHolder>().clear();
         AgencyBankingModuleEntry.clearSession();
       },
     ),

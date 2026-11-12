@@ -15,7 +15,7 @@ modules:
 
       final result = Process.runSync(
         'dart',
-        ['run', 'tool/generate_modules.dart', '--config=${configFile.path}'],
+        ['tool/generate_modules.dart', '--config=${configFile.path}'],
       );
 
       expect(result.exitCode, equals(1));
@@ -34,7 +34,7 @@ modules:
 
       final result = Process.runSync(
         'dart',
-        ['run', 'tool/generate_modules.dart', '--config=${configFile.path}'],
+        ['tool/generate_modules.dart', '--config=${configFile.path}'],
       );
 
       expect(result.exitCode, equals(1));
@@ -54,7 +54,7 @@ modules:
 
       final result = Process.runSync(
         'dart',
-        ['run', 'tool/generate_modules.dart', '--config=${configFile.path}'],
+        ['tool/generate_modules.dart', '--config=${configFile.path}'],
       );
 
       expect(result.exitCode, equals(0));

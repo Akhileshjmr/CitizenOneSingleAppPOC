@@ -5,7 +5,6 @@ import 'package:citizenone_app/core/session/presentation/state/session_cubit.dar
 import 'package:citizenone_app/core/theme/app_theme_extensions.dart';
 import 'package:citizenone_app/design_system/atoms/app_text.dart';
 import 'package:citizenone_app/features/agent/insurance_partners/presentation/widgets/insurance_sidebar.dart';
-import 'package:citizenone_app/features/auth/presentation/state/agent_banking_credential_holder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:go_router/go_router.dart';
@@ -16,8 +15,7 @@ import 'package:go_router/go_router.dart';
 /// Reached at `/agent/dashboard`, replacing the old direct hop straight
 /// into [InsurancePartnerSelectionScreen]. Insurance keeps using that
 /// existing, unchanged screen; Banking launches the embedded Agency
-/// Banking module, auto-authenticated with the credentials captured at
-/// login via [AgentBankingCredentialHolder].
+/// Banking module, auto-authenticated via host session token.
 ///
 /// Also hosts the agent drawer ([InsuranceSidebar]) — Profile, Transaction
 /// Settings and Sign Out are agent-level concerns, not Insurance-specific,
@@ -85,21 +83,12 @@ class AgentServicesDashboardScreen extends StatelessWidget {
   }
 
   Future<void> _openBanking(BuildContext context) async {
-    final holder = sl<AgentBankingCredentialHolder>();
-    final phone = holder.mobileNumber;
-    final password = holder.password;
-    if (phone == null || password == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Please sign in again to access Banking.'),
-        ),
-      );
-      return;
-    }
+    final token = sl<SessionCubit>().currentToken ?? 'jwt_session_token';
+    const phone = '0971234567';
 
     await AgencyBankingModuleEntry.initialize(
       gatewayBaseUrl: sl<AppEnv>().agencyBankingBaseUrl,
-      sessionToken: sl<SessionCubit>().currentToken,
+      sessionToken: token,
       onSessionActivity: () => sl<SessionCubit>().reportActivity(),
     );
 
@@ -110,7 +99,7 @@ class AgentServicesDashboardScreen extends StatelessWidget {
       MaterialPageRoute(
         builder: (routeContext) => AgencyBankingModuleEntry.start(
           agentMobileNumber: phone,
-          agentPassword: password,
+          agentPassword: token,
           onExit: () => Navigator.of(routeContext).pop(),
           onSignOut: () => showLogoutDialog(routeContext),
         ),

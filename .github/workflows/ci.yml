@@ -1,0 +1,66 @@
+name: CitizenOne SuperApp CI / CD Quality Gates
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality_gates:
+    name: Architectural & Test Quality Gates (Phase 3)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: ☕ Setup Java (Temurin 17)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: 🐦 Setup Flutter SDK
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.3'
+          channel: 'stable'
+          cache: true
+          cache-key: "flutter-:os:-:channel:-:version:-:keys-"
+
+      - name: 📦 Install Runtime Dependencies
+        run: |
+          flutter pub get
+
+      - name: 🛡️ Gate 1: Architectural Boundary & Encapsulation Audit
+        run: |
+          dart run tool/verify_boundaries.dart --github-summary --json
+
+      - name: 🔍 Gate 2: Static Code Analysis
+        run: |
+          dart analyze --no-fatal-warnings lib
+
+      - name: 🧪 Gate 3: Automated Unit & Widget Test Suite
+        run: |
+          flutter test --coverage
+
+      - name: 📱 Gate 4: Android Debug APK Compilation
+        run: |
+          flutter build apk --debug --android-skip-build-dependency-validation
+
+      - name: 📊 Upload Boundary Audit Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: boundary-audit-report
+          path: build/boundary_report.json
+          retention-days: 14
+

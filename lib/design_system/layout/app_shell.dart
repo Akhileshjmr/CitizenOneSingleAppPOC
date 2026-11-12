@@ -38,10 +38,16 @@ class AppShell extends StatelessWidget {
   /// Resolves display title for current app header
   String _resolveHeaderTitle(String path) {
     if (path == '/') return 'CitizenOne SuperApp';
+    if (path.startsWith('/agency-banking/portal')) return 'Agency Banking Portal';
     if (path.startsWith('/agency-banking/cash-deposit')) return 'Cash Deposit';
+    if (path.startsWith('/agency-banking/cash-withdrawal')) return 'Cash Withdrawal';
+    if (path.startsWith('/agency-banking/customer-onboarding')) return 'Customer Onboarding';
+    if (path.startsWith('/agency-banking/transactions')) return 'Agency Transactions';
+    if (path.startsWith('/agency-banking/micro-loans')) return 'Micro Loans';
     if (path.startsWith('/agency-banking')) return 'Agency Banking';
     if (path.startsWith('/kyc')) return 'KYC Verification';
     if (path.startsWith('/loans')) return 'Micro Loans';
+    if (path.startsWith('/insurance/motor')) return 'Motor Insurance Engine';
     if (path.startsWith('/insurance')) return 'Insurance & Coverage';
     if (path.startsWith('/login')) return 'Sign In';
     if (path.startsWith('/forgot-password')) return 'Password Reset';
@@ -71,20 +77,34 @@ class AppShell extends StatelessWidget {
   }
 
   void _handleBack(BuildContext context, String currentPath) {
-    if (currentPath.startsWith('/agency-banking/cash-deposit')) {
+    if (currentPath.startsWith('/agency-banking/') && currentPath != '/agency-banking') {
       context.go('/agency-banking');
+      return;
+    }
+    if (currentPath == '/agency-banking' ||
+        currentPath == '/agency_banking') {
+      context.go('/agent/dashboard');
+      return;
+    }
+    if (currentPath.startsWith('/insurance')) {
+      context.go('/agent/dashboard');
       return;
     }
     if (currentPath.startsWith('/forgot-')) {
       context.go('/login');
       return;
     }
-    context.go('/');
+    if (context.canPop()) {
+      context.pop();
+      return;
+    }
+    context.go('/agent/dashboard');
   }
 
   bool _shouldHideTopBar(String path) {
-    // Hide top purple bar and pill switcher on login, auth screens, and dashboards
+    // Hide top purple bar and pill switcher on login, auth screens, dashboards, and embedded sub-shells
     if (path == '/login' ||
+        path == '/unauthorized' ||
         path.startsWith('/forgot-') ||
         path.startsWith('/auth/')) {
       return true;
@@ -95,7 +115,9 @@ class AppShell extends StatelessWidget {
         path == '/agent' ||
         path == '/customer' ||
         path == '/farmer' ||
-        path.startsWith('/agent/partners/insurance')) {
+        path.startsWith('/agent/partners/insurance') ||
+        path.startsWith('/agency-banking/portal') ||
+        path.startsWith('/insurance/motor')) {
       return true;
     }
     return false;
@@ -121,10 +143,22 @@ class AppShell extends StatelessWidget {
         final activeTheme =
             AppTheme.getThemeForModule(activeModuleId, module: activeModule);
 
+        final content = PopScope(
+          canPop: location == '/' ||
+              location == '/agent/dashboard' ||
+              location == '/login',
+          onPopInvokedWithResult: (didPop, result) {
+            if (!didPop) {
+              _handleBack(context, location);
+            }
+          },
+          child: child,
+        );
+
         if (_shouldHideTopBar(location)) {
           return Theme(
             data: activeTheme,
-            child: child,
+            child: content,
           );
         }
 
@@ -411,7 +445,7 @@ class AppShell extends StatelessWidget {
                       ),
                     ),
                   ),
-                Expanded(child: child),
+                Expanded(child: content),
               ],
             ),
           ),

@@ -39,6 +39,7 @@ GoRouter createAppRouter(List<AppModule> modules, {AuthCubit? authCubit}) {
       // Publicly accessible paths that guests can view without signing in
       final isPublic = path == '/' ||
           path == '/login' ||
+          path == '/unauthorized' ||
           path.startsWith('/forgot-password') ||
           path.startsWith('/auth/forgot-password') ||
           path.startsWith('/forgot-username') ||
@@ -52,11 +53,31 @@ GoRouter createAppRouter(List<AppModule> modules, {AuthCubit? authCubit}) {
         return '/login?redirect=${Uri.encodeComponent(path)}';
       }
 
+      // Role-based route permissions (verifying Agent role)
+      if (isAuthenticated) {
+        final user = (authCubit.state as AuthAuthenticated).user;
+        final hasAgentRole = user.isAgent;
+
+        final isAgentRestricted = path.startsWith('/agent/') ||
+            path == '/agent' ||
+            path == '/agent/dashboard' ||
+            path.startsWith('/agency-banking');
+
+        if (isAgentRestricted && !hasAgentRole) {
+          AppLogger.warning(
+            'Access denied for user "${user.username}" (roles: ${user.roles}) on route "$path": Agent role required',
+            'RouterGuard',
+          );
+          return '/unauthorized?deniedPath=${Uri.encodeComponent(path)}';
+        }
+      }
+
       // If user is already authenticated and visits login, redirect to target or agent dashboard
       if (isAuthenticated && path == '/login') {
         final target = state.uri.queryParameters['redirect'];
         if (target != null && target.isNotEmpty) return target;
-        return '/agent/dashboard';
+        final user = (authCubit.state as AuthAuthenticated).user;
+        return user.isAgent ? '/agent/dashboard' : '/citizen-one';
       }
 
       return null;
@@ -83,6 +104,19 @@ GoRouter createAppRouter(List<AppModule> modules, {AuthCubit? authCubit}) {
           GoRoute(
             path: '/dashboard',
             builder: (context, state) => const AgentServicesDashboardScreen(),
+          ),
+          GoRoute(
+            path: '/unauthorized',
+            builder: (context, state) {
+              final authState = authCubit?.state;
+              final user =
+                  authState is AuthAuthenticated ? authState.user : null;
+              final deniedPath = state.uri.queryParameters['deniedPath'];
+              return UnauthorizedAccessView(
+                user: user,
+                deniedPath: deniedPath,
+              );
+            },
           ),
           ...modules.expand((module) => module.routes),
         ],

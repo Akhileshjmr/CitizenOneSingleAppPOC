@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:go_router/go_router.dart';
-import 'package:citizenone_app/modules/insurance/module/module_entry.dart';
 import 'package:citizenone_app/core/theme/tokens/colors.dart';
-import '../../../auth/presentation/state/agent_banking_credential_holder.dart';
 import '../widgets/insurance_sidebar.dart';
 
 class InsurancePartnerSelectionScreen extends StatefulWidget {
@@ -58,25 +56,9 @@ class _InsurancePartnerSelectionScreenState
     super.dispose();
   }
 
-  void _openSelectedPartner(BuildContext context) async {
+  void _openSelectedPartner(BuildContext context) {
     final selected = _filteredPartners[_selectedIndex];
-    final holder = AgentBankingCredentialHolder.instance;
-    final agentMobNo = holder.mobileNumber ?? '0971234567';
-
-    try {
-      await InsuranceModuleEntry.initialize(
-        insuranceProviderData: {
-          'vendorCode': selected['code'] ?? '',
-          'vendorKey': 'partner-key-${selected['code']}',
-          'vendorMob': '0970000000',
-          'agentMobNo': agentMobNo,
-          'vendorLogo': '',
-          'agentCode': agentMobNo,
-        },
-      );
-    } catch (_) {}
-
-    if (!context.mounted) return;
+    final vendorCode = selected['code'] ?? '';
 
     // Show choice sheet: Launch Embedded Insurance Engine or Clean Architecture Flow
     showModalBottomSheet(
@@ -163,15 +145,7 @@ class _InsurancePartnerSelectionScreenState
                 ),
                 onTap: () {
                   Navigator.of(bottomContext).pop();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (routeContext) => InsuranceModuleEntry.start(
-                        onExit: () => Navigator.of(routeContext).pop(),
-                        onSignOut: () => showLogoutDialog(routeContext),
-                      ),
-                    ),
-                  );
+                  context.push('/insurance/motor?vendorCode=$vendorCode');
                 },
               ),
             ],

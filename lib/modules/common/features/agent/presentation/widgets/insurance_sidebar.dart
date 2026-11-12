@@ -4,15 +4,16 @@ import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:go_router/go_router.dart';
 import 'package:citizenone_app/core/core.dart';
 import 'package:citizenone_app/core/theme/tokens/colors.dart';
-import '../../../auth/presentation/state/agent_banking_credential_holder.dart';
 
 class InsuranceSidebar extends StatelessWidget {
   const InsuranceSidebar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final holder = AgentBankingCredentialHolder.instance;
-    final phone = holder.mobileNumber ?? '0971234567';
+    final authState = context.watch<AuthCubit>().state;
+    final phone = authState is AuthAuthenticated
+        ? authState.user.username
+        : '0971234567';
 
     return Drawer(
       width: MediaQuery.of(context).size.width * 0.85,
@@ -296,8 +297,6 @@ Future<void> showLogoutDialog(BuildContext context) async {
   );
 
   if (confirmed == true && context.mounted) {
-    // Clear credentials in memory
-    AgentBankingCredentialHolder.instance.clear();
     // Perform symmetrical session teardown across all modules
     await context.read<AuthCubit>().logout();
     if (context.mounted) {

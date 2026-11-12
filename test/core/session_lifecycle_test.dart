@@ -53,13 +53,14 @@ class FakeAuthRepository implements AuthRepository {
   Future<UserModel> login({
     required String username,
     required String password,
+    String? role,
   }) async {
     return UserModel(
       userId: 'U-TEST',
       username: username,
       email: '$username@test.com',
       token: 'test-token',
-      roles: const ['CITIZEN'],
+      roles: [role ?? 'CITIZEN'],
     );
   }
 
@@ -70,7 +71,7 @@ class FakeAuthRepository implements AuthRepository {
   Future<String> requestRecoverUsername(String email) async => 'u***';
 
   @override
-  Future<ScopedToken> getScopedToken(String targetModule) async {
+  Future<ScopedToken> getScopedToken(String targetModule, {String? userToken}) async {
     return ScopedToken(
       token: 'token-$targetModule',
       targetModule: targetModule,

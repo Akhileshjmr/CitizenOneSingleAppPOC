@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# CitizenOne Pre-Commit Architectural Quality Gate (Phase 3)
+# Automatically checks for architectural boundary violations and compilation issues before committing.
+
+set -e
+
+echo "------------------------------------------------------------"
+echo "🛡️  Running CitizenOne Pre-Commit Architectural Quality Gates"
+echo "------------------------------------------------------------"
+
+# 1. Architectural Boundary Audit
+echo "▶ Running Architectural Boundary Verification..."
+if ! dart run tool/verify_boundaries.dart; then
+  echo ""
+  echo "❌ COMMIT REJECTED: Architectural boundary violation detected!"
+  echo "   Modules in lib/modules/ must not import other modules or host files directly."
+  echo "   Please fix the violations listed above before committing."
+  exit 1
+fi
+
+# 2. Static Code Analysis on staged/lib files
+echo "▶ Running Static Code Analysis (dart analyze)..."
+if ! dart analyze --no-fatal-warnings lib; then
+  echo ""
+  echo "❌ COMMIT REJECTED: Compilation or fatal analyzer errors found in lib/!"
+  echo "   Please resolve all errors before committing."
+  exit 1
+fi
+
+echo "✅ All Pre-Commit Quality Gates PASSED. Committing code."
+exit 0
+

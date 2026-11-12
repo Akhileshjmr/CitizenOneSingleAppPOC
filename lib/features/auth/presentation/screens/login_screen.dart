@@ -2,7 +2,6 @@ import 'package:citizenone_app/components/foundation/animated_input_wrapper.dart
 import 'package:citizenone_app/components/foundation/app_text.dart';
 import 'package:citizenone_app/components/foundation/app_text_field.dart';
 import 'package:citizenone_app/components/foundation/primary_button.dart';
-import 'package:citizenone_app/core/di/di_setup.dart';
 import 'package:citizenone_app/core/forms/enums/app_text_input_type.dart';
 import 'package:citizenone_app/core/forms/formatters/app_text_field_formatters.dart';
 import 'package:citizenone_app/core/forms/validators/app_text_field_validators.dart';
@@ -14,7 +13,6 @@ import 'package:citizenone_app/core/theme/tokens/colors.dart';
 import 'package:citizenone_app/core/theme/tokens/typography.dart';
 import 'package:citizenone_app/features/auth/domain/entities/user_role.dart';
 import 'package:citizenone_app/features/auth/presentation/screens/password_setup_required_sheet.dart';
-import 'package:citizenone_app/features/auth/presentation/state/agent_banking_credential_holder.dart';
 import 'package:citizenone_app/features/auth/presentation/state/auth_cubit.dart';
 import 'package:citizenone_app/features/auth/presentation/state/auth_state.dart';
 import 'package:flutter/material.dart';
@@ -88,14 +86,6 @@ class _LoginScreenState extends State<LoginScreen> {
     }
 
     if (state.selectedRole == UserRole.agent) {
-      // Capture the raw credentials now — this is the one place they're
-      // still available before the controllers are disposed — so the
-      // embedded Agency Banking module can silently authenticate later
-      // without a second login screen. Never persisted to disk.
-      sl<AgentBankingCredentialHolder>().set(
-        mobileNumber: _mobileController.text.trim(),
-        password: _passwordController.text,
-      );
       context.go('/agent/dashboard');
       return;
     }

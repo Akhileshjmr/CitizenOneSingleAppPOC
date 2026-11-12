@@ -24,6 +24,7 @@ import 'presentation/screens/insurance_plans_screen.dart';
 import 'presentation/screens/policy_purchase_screen.dart';
 import 'presentation/screens/active_policies_screen.dart';
 import 'presentation/screens/insurance_claims_screen.dart';
+import 'module/module_entry.dart';
 import 'theme/insurance_theme.dart';
 
 class InsuranceModule implements AppModule {
@@ -146,6 +147,40 @@ class InsuranceModule implements AppModule {
             final policyId = state.uri.queryParameters['policyId'];
             return _wrapWithProviders(
               InsuranceClaimsScreen(initialPolicyId: policyId),
+            );
+          },
+        ),
+        GoRoute(
+          path: '/insurance/motor',
+          builder: (context, state) {
+            final vendorCode =
+                state.uri.queryParameters['vendorCode'] ?? 'SANLAM_ZM';
+            final authState = context.read<AuthCubit>().state;
+            final user = authState is AuthAuthenticated ? authState.user : null;
+            final agentMobNo = user?.username ?? '0971234567';
+            try {
+              InsuranceModuleEntry.initialize(
+                insuranceProviderData: {
+                  'vendorCode': vendorCode,
+                  'vendorKey': 'partner-key-$vendorCode',
+                  'vendorMob': '0970000000',
+                  'agentMobNo': agentMobNo,
+                  'vendorLogo': '',
+                  'agentCode': agentMobNo,
+                },
+              );
+            } catch (_) {}
+            return InsuranceModuleEntry.start(
+              onExit: () {
+                if (context.canPop()) {
+                  context.pop();
+                } else {
+                  context.go('/agent/partners/insurance');
+                }
+              },
+              onSignOut: () {
+                context.go('/login');
+              },
             );
           },
         ),

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:go_router/go_router.dart';
-import 'package:citizenone_app/modules/agency_banking/module/module_entry.dart';
 import 'package:citizenone_app/core/theme/tokens/colors.dart';
-import '../../../auth/presentation/state/agent_banking_credential_holder.dart';
 import '../widgets/insurance_sidebar.dart';
 
 class AgentServicesDashboardScreen extends StatelessWidget {
@@ -87,7 +85,7 @@ class AgentServicesDashboardScreen extends StatelessWidget {
               title: 'Banking',
               subtitle: 'Agency Banking (Deposit, Withdrawal & Transfer)',
               badge: 'Active Gateway',
-              onTap: () => _openBanking(context),
+              onTap: () => context.push('/agency-banking'),
             ),
             const SizedBox(height: 28),
 
@@ -140,34 +138,6 @@ class AgentServicesDashboardScreen extends StatelessWidget {
       ),
     );
   }
-
-  Future<void> _openBanking(BuildContext context) async {
-    final holder = AgentBankingCredentialHolder.instance;
-    final phone = holder.mobileNumber ?? '0971234567';
-    final password = holder.password ?? 'Password123!';
-
-    try {
-      await AgencyBankingModuleEntry.initialize(
-        gatewayBaseUrl: 'https://gateway.citizenone.gov.zm/banking',
-        sessionToken: 'agent-token-${DateTime.now().millisecondsSinceEpoch}',
-        onSessionActivity: () {},
-      );
-    } catch (_) {}
-
-    if (!context.mounted) return;
-
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (routeContext) => AgencyBankingModuleEntry.start(
-          agentMobileNumber: phone,
-          agentPassword: password,
-          onExit: () => Navigator.of(routeContext).pop(),
-          onSignOut: () => showLogoutDialog(routeContext),
-        ),
-      ),
-    );
-  }
 }
 
 class _ServiceTile extends StatelessWidget {
@@ -199,7 +169,7 @@ class _ServiceTile extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         onTap: onTap,
         child: Container(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
             border: Border.all(color: AppColors.outline),
@@ -220,7 +190,10 @@ class _ServiceTile extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
+                    Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      spacing: 8,
+                      runSpacing: 4,
                       children: [
                         Text(
                           title,
@@ -230,7 +203,6 @@ class _ServiceTile extends StatelessWidget {
                             color: AppColors.textPrimary,
                           ),
                         ),
-                        const SizedBox(width: 8),
                         Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 8,
@@ -301,7 +273,7 @@ class _QuickCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         onTap: onTap,
         child: Container(
-          padding: const EdgeInsets.all(14),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             border: Border.all(color: AppColors.outline),
@@ -310,27 +282,29 @@ class _QuickCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
                   color: color.withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Icon(icon, color: color, size: 20),
+                child: Icon(icon, color: color, size: 18),
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 10),
               Text(
                 title,
                 style: const TextStyle(
-                  fontSize: 13,
+                  fontSize: 12,
                   fontWeight: FontWeight.w700,
                   color: AppColors.textPrimary,
                 ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(height: 2),
               Text(
                 subtitle,
                 style: TextStyle(
-                  fontSize: 11,
+                  fontSize: 10,
                   fontWeight: FontWeight.w600,
                   color: color,
                 ),

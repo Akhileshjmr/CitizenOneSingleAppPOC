@@ -100,12 +100,19 @@ class AgencyDashboardScreen extends StatelessWidget {
               ),
               _buildFeatureCard(
                 context,
+                title: 'Banking Portal',
+                subtitle: 'Full Agency Core & Agrinet',
+                icon: Icons.account_balance,
+                color: const Color(0xFF2563EB),
+                onTap: () => context.push('/agency-banking/portal'),
+              ),
+              _buildFeatureCard(
+                context,
                 title: 'Cash Withdrawal',
                 subtitle: 'Agent Cash Out Service',
                 icon: Icons.outbox,
                 color: Colors.teal.shade700,
-                onTap: () => _showSnackbar(
-                    context, 'Cash Withdrawal feature coming soon'),
+                onTap: () => context.push('/agency-banking/cash-withdrawal'),
               ),
               _buildFeatureCard(
                 context,
@@ -113,8 +120,7 @@ class AgencyDashboardScreen extends StatelessWidget {
                 subtitle: 'KYC Account Opening',
                 icon: Icons.person_add_alt_1,
                 color: const Color(0xFF10B981),
-                onTap: () => _showSnackbar(
-                    context, 'Customer Onboarding feature coming soon'),
+                onTap: () => context.push('/agency-banking/customer-onboarding'),
               ),
               _buildFeatureCard(
                 context,
@@ -122,8 +128,15 @@ class AgencyDashboardScreen extends StatelessWidget {
                 subtitle: 'Audit Log & History',
                 icon: Icons.receipt_long,
                 color: Colors.cyan.shade800,
-                onTap: () => _showSnackbar(
-                    context, 'Transactions Log feature coming soon'),
+                onTap: () => context.push('/agency-banking/transactions'),
+              ),
+              _buildFeatureCard(
+                context,
+                title: 'Micro Loans',
+                subtitle: 'Farmer & SME Credit',
+                icon: Icons.monetization_on,
+                color: const Color(0xFF8B5CF6),
+                onTap: () => context.push('/agency-banking/micro-loans'),
               ),
             ],
           ),
@@ -172,12 +185,6 @@ class AgencyDashboardScreen extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-
-  void _showSnackbar(BuildContext context, String msg) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(msg)),
     );
   }
 }

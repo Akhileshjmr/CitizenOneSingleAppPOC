@@ -19,6 +19,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> login({
     required String username,
     required String password,
+    String? role,
   }) async {
     if (username.trim().isEmpty || password.trim().isEmpty) {
       emit(const AuthError('Username and password are required.'));
@@ -31,6 +32,7 @@ class AuthCubit extends Cubit<AuthState> {
       final user = await repository.login(
         username: username,
         password: password,
+        role: role,
       );
       if (isClosed) return;
 
@@ -53,9 +55,12 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  /// Exchanges global credentials for a short-lived scoped token for a target module.
+  /// Exchanges global credentials for a short-lived scoped JWT token for a target module.
   Future<ScopedToken> getScopedToken(String targetModule) {
-    return repository.getScopedToken(targetModule);
+    final userToken = state is AuthAuthenticated
+        ? (state as AuthAuthenticated).user.token
+        : null;
+    return repository.getScopedToken(targetModule, userToken: userToken);
   }
 
   Future<void> forgotPassword(String identifier) async {

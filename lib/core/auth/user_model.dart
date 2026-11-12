@@ -36,6 +36,15 @@ class UserModel extends Equatable {
         'roles': roles,
       };
 
+  bool hasRole(String role) {
+    final needle = role.trim().toUpperCase();
+    return roles.any((r) => r.trim().toUpperCase() == needle);
+  }
+
+  bool get isAgent => hasRole('AGENT');
+  bool get isCitizen => hasRole('CITIZEN');
+  bool get isFarmer => hasRole('FARMER');
+
   @override
   List<Object?> get props => [userId, username, email, token, roles];
 }
